@@ -1,0 +1,9 @@
+dependencies:
+- name: ingress
+  repository: https://github.com/stcox/charts/raw/master
+  version: 0.1.0
+- name: lego
+  repository: https://github.com/stcox/charts/raw/master
+  version: 0.1.0
+digest: sha256:3f96ad38235ce1f17af25e3ce4a05378d80ec163ae8f890af9c563a80c3d8a07
+generated: 2018-02-04T05:58:35.5653804-07:00
