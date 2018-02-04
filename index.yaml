@@ -1,8 +1,17 @@
 apiVersion: v1
 entries:
+  core:
+  - apiVersion: v1
+    created: 2018-02-04T06:46:40.6458754-07:00
+    description: Core Processes (i.e., Redis)
+    digest: a62acf5482a94ac5dd3a3f5ebd1f2ddf17f1c12f609bb0758669ef411557bd14
+    name: core
+    urls:
+    - https://github.com/stcox/charts/raw/master/core-0.1.0.tgz
+    version: 0.1.0
   ingress:
   - apiVersion: v1
-    created: 2018-02-03T19:38:12.0968194-07:00
+    created: 2018-02-04T06:46:40.6468768-07:00
     description: Nginx ingress helm chart
     digest: 9f552c1342c368e0c8cc7570d7d16332e5b4a032a36478bac92580d2d486abf0
     name: ingress
@@ -11,11 +20,11 @@ entries:
     version: 0.1.0
   lego:
   - apiVersion: v1
-    created: 2018-02-03T19:38:12.1038045-07:00
+    created: 2018-02-04T06:46:40.6468768-07:00
     description: LetsEncrypt Certificate Manager
     digest: 157e33545c952e1e5d3445301a25c36937efed96f23faf7ac729f4bc0127afe5
     name: lego
     urls:
     - https://github.com/stcox/charts/raw/master/lego-0.1.0.tgz
     version: 0.1.0
-generated: 2018-02-03T19:38:12.0917973-07:00
+generated: 2018-02-04T06:46:40.6458754-07:00
