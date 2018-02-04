@@ -1,8 +1,0 @@
-# requirements.yaml
-dependencies:
-- name: ingress
-  version: "0.1.0"
-  repository: "https://github.com/stcox/charts/raw/master"
-- name: lego
-  version: "0.1.0"
-  repository: "https://github.com/stcox/charts/raw/master"
