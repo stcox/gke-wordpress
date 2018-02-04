@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: wp-{{ .Values.name }}-pv
+  labels:
+    app: wp-{{ .Values.name }}
+spec:
+  capacity:
+    storage: {{ .Values.storage }}
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: slow
+  gcePersistentDisk:
+    pdName: wp-{{ .Values.name }}
+    fsType: ext4

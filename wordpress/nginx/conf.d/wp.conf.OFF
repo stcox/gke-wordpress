@@ -1,0 +1,34 @@
+server {
+        ## Your website name goes here.
+        server_name _;
+        ## Your only path reference.
+        ## This should be in your http block and if it is, it's not needed here.
+        #index index.php;
+
+        root /var/www/html;
+        include /etc/nginx-conf/global/*.conf;
+
+        set $naxsi_flag_enable "";
+
+        if ($request_uri ~* "(^/basket/.*|^/checkout/.*)") {
+              set $naxsi_flag_enable 0;
+        }
+
+        if ($args ~* "(customize_changeset_uuid=.+|wc-ajax=get_refreshed_fragments.*)") {
+              set $naxsi_flag_enable 0;
+        }
+
+        location / {
+                # This is cool because no php is touched for static content.
+                # include the "?$args" part so non-default permalinks doesn't break when using query string
+                try_files $uri $uri/ /index.php?$args;
+                include /etc/nginx-conf/global/*.rules;
+        }
+
+        location ~ \.php$ {
+                #NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
+                limit_req zone=one burst=12 nodelay;
+                include fastcgi_params;
+                fastcgi_pass php;
+        }
+}

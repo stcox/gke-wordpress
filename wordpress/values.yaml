@@ -1,0 +1,19 @@
+# Basic Site Info
+name: mynamespace         # Virtual Cluster Namespace (A-z,0-9,'-')
+domain: mydomain          # Domain, e.g., mysite.com, www.mysite.net, etc.
+storage: 5Gi              # Storage Size
+tls: false                # Set to true for HTTPS/TLS/SSL, if 'domain' is public
+
+# Requests & Limits - Memory & CPU:
+requestsMemory: 256Mi
+requestsCpu: 250m
+limitsMemory: 512Mi
+limitsCpu: 500m
+
+##############################################################
+# SET 'instanceConnectionName' below with an 'Instance connection name'
+# from https://console.cloud.google.com/sql/instances.
+# USAGE: [GCP Project]:[region]:[CloudSQL Name]
+# E.G., myproject-123456:us-central1:mydb
+##############################################################
+instanceConnectionName: myproject:myregion:mydb

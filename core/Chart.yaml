@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Core Processes (i.e., Redis)
+name: core
+version: 0.1.0

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-global
+  namespace: wp-{{ .Values.name }}
+  labels:
+    app: wp-{{ .Values.name }}
+data:
+{{ (.Files.Glob "nginx/global/*").AsConfig | indent 2 }}

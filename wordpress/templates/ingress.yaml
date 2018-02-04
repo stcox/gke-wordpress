@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: wp-{{ .Values.name }}
+  namespace: wp-{{ .Values.name }}
+  annotations:
+    {{ if eq .Values.tls true }}
+    kubernetes.io/tls-acme: "true"
+    {{ end }}
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  {{ if eq .Values.tls true }}
+  tls:
+  - hosts:
+    - {{ .Values.domain }}
+    secretName: wp-{{ .Values.name }}-tls
+  {{ end }}
+  rules:
+  - host: {{ .Values.domain }}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: wp-{{ .Values.name }}
+          servicePort: 80

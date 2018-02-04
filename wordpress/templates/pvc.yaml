@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wp-{{ .Values.name }}-pv-claim
+  namespace: wp-{{ .Values.name }}
+  labels:
+    app: wp-{{ .Values.name }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.storage }}
+  storageClassName: slow
+  selector:
+    matchLabels:
+      app: wp-{{ .Values.name }}
