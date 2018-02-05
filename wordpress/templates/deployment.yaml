@@ -33,13 +33,13 @@ spec:
             secretKeyRef:
               name: cloudsql-db-credentials
               key: password
-        resources:
-          requests:
-            memory: {{ .Values.requestsMemory | quote }}
-            cpu: {{ .Values.requestsCpu | quote }}
-          limits:
-            memory: {{ .Values.limitsMemory | quote }}
-            cpu: {{ .Values.limitsCpu | quote }}
+        #resources:
+        #  requests:
+        #    memory: {{ .Values.requestsMemory | quote }}
+        #    cpu: {{ .Values.requestsCpu | quote }}
+        #  limits:
+        #    memory: {{ .Values.limitsMemory | quote }}
+        #    cpu: {{ .Values.limitsCpu | quote }}
         volumeMounts:
         - name: wp-persistent-storage
           mountPath: /var/www/html
