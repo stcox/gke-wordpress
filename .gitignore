@@ -1,0 +1,3 @@
+*.dbuser
+*.dbpw
+*credentials.json
