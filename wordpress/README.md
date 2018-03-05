@@ -9,4 +9,4 @@ Each site is a Kubernetes pod with:
 3. a proxy container to a private, separate database on a shared CloudSQL database server
 4. a virtual cluster namespace
 
-Requires core cluster chart for Redis, LetsEncrypt and Ingress
+Requires [Core Cluster](https://github.com/stcox/charts/tree/master/core) chart for basic core services: Redis, LetsEncrypt and Ingress.
