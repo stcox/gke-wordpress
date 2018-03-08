@@ -19,7 +19,7 @@ spec:
         track: stable
     spec:
       containers:
-      - image: stcox/wordpress-redis:1.2
+      - image: stcox/wordpress:1.0
         name: wp
         env:
         - name: WORDPRESS_DB_HOST
@@ -60,7 +60,7 @@ spec:
           mountPath: /etc/ssl/certs
         - name: cloudsql
           mountPath: /cloudsql
-      - image: stcox/nginx-pagespeed:1.1
+      - image: stcox/nginx:1.0
         name: wp-nginx
         ports:
         - containerPort: 80
