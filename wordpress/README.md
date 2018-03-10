@@ -1,8 +1,8 @@
-# WordPress-Nginx-CloudSQL Virtual Cluster
+# WordPress - Nginx - CloudSQL for Kubernetes
 
 Create multiple WordPress sites while sharing the same external Google CloudSQL database server.
 
-Each site is its own Kubernetes Namespace with:
+Each site has its own Kubernetes Namespace with:
 
 One or more Pods containing:
 - a WordPress/PHP-FPM container with Redis extensions
@@ -10,4 +10,10 @@ One or more Pods containing:
 - a Google CloudSQL proxy container to a private, separate database on a shared CloudSQL database server
 
 ## Requirements
-An existing Kubernetes cluster with active [Core Cluster Services](https://github.com/stcox/charts/tree/master/core): Redis, LetsEncrypt and Ingress controller.
+An existing Kubernetes cluster, Redis, LetsEncrypt, and an Ingress controller.
+
+Installation and Usage
+Visit USAGE.md.
+
+Acknowledgements
+This project was inspired by [daxio/k8s-lemp](https://github.com/daxio/k8s-lemp) and builds on it with the various other official Docker images and Kubernetes applications mentioned previously.
