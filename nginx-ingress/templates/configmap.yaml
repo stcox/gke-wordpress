@@ -9,7 +9,7 @@ data:
 kind: ConfigMap
 metadata:
   namespace: nginx-ingress
-  name: nginx-ingress
+  name: nginx
   labels:
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
