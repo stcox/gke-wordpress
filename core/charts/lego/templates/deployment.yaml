@@ -1,7 +1,7 @@
 apiVersion: v1
 metadata:
-  name: lego
-  namespace: lego
+  name: kube-lego
+  namespace: kube-lego
 data:
   # modify this to specify your address
   lego.email: {{ .Values.legoEmail | quote }}
@@ -12,14 +12,14 @@ kind: ConfigMap
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: lego
-  namespace: lego
+  name: kube-lego
+  namespace: kube-lego
 spec:
   replicas: {{ .Values.replicas }}
   template:
     metadata:
       labels:
-        app: lego
+        app: kube-lego
     spec:
       containers:
       - name: lego
@@ -31,12 +31,12 @@ spec:
         - name: LEGO_EMAIL
           valueFrom:
             configMapKeyRef:
-              name: lego
+              name: kube-lego
               key: lego.email
         - name: LEGO_URL
           valueFrom:
             configMapKeyRef:
-              name: lego
+              name: kube-lego
               key: lego.url
         - name: LEGO_NAMESPACE
           valueFrom:
