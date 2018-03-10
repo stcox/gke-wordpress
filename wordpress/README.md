@@ -10,7 +10,7 @@ One or more Pods containing:
 - a Google CloudSQL proxy container to a private, separate database on a shared CloudSQL database server
 
 ## Requirements
-An existing Kubernetes cluster, Redis, LetsEncrypt, and an Ingress controller.
+An existing Kubernetes cluster with active Redis, Kube-Lego, and an Ingress controller pods.
 
 Installation and Usage
 Visit USAGE.md.
