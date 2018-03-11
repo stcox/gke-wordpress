@@ -1,7 +1,0 @@
-proxy-connect-timeout: 15
-proxy-read-timeout: 600
-proxy-send-timeout: 600
-proxy-body-size: 64m
-server-name-hash-bucket-size: 256
-hsts-preload: true
-replicas: 1
