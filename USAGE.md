@@ -1,17 +1,17 @@
 work in progress
 
 # WordPress-Nginx-CloudSQL Kubernetes Helm Charts
-Host multiple WordPress sites while sharing the same external Google CloudSQL database server.
+Host multiple WordPress sites while sharing the same external Google Cloud SQL database server.
 Each site has its own Kubernetes Namespace with one or more Pods containing:
 - a WordPress/PHP-FPM container with Redis extensions
 - an Nginx container with FastCGI Caching, [Pagespeed](https://www.modpagespeed.com/) extensions and [NAXSI firewall](https://github.com/nbs-system/naxsi)
-- a Google CloudSQL proxy container to a private, separate database on a shared CloudSQL database server
+- a Google CloudSQL proxy container to a separate database on a shared Cloud SQL database server
 
 ## Prerequisites
 * You need a Kubernetes cluster on Google Compute Engine. This is as easy as following the [official Kubernetes guide](https://kubernetes.io/docs/getting-started-guides/gce/ "Running Kubernetes on Google Compute Engine").
-* You need a Google CloudSQL Database Server. This is as easy as following the [official Google CloudSQL guide](https://cloud.google.com/sql/docs/mysql/quickstart "Running Google CloudSQL").
+* You need a Google CloudSQL Database Server. This is as easy as following the [official Google Cloud SQL guide](https://cloud.google.com/sql/docs/mysql/quickstart "Running Google Cloud SQL").
 * You should be comfortable with basic SQL statements, i.e. creating and managing DBs, users, grants.
-* You also need a domain and access to it's DNS settings. These instructions use the generic domain names www.mysite1.com and www.mysite2.com.
+* You also need a domain and access to its DNS settings. These instructions use the generic domain names www.mysite1.com and www.mysite2.com.
 * Upon deploying WordPress you should install:
     * [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin to connect your site to the Redis `Deployment`
     * A cache-clearing plugin such as [NGINX Cache](https://wordpress.org/plugins/nginx-cache/) if you want to make sure changes appear on your website promptly. There are also other plugins such as [NGINX Helper](https://wordpress.org/plugins/nginx-helper/) but this requires an additional NGINX module and we have not successfully tested this plugin.
@@ -112,7 +112,7 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
   
 * Deploy WordPress/NGINX and `notls-Ingress`. Change the email address in `lego/kube-lego-Deployment.yaml` before creating the kube-lego Deployment.
  
-   __Note: The default domain name is www.wingdings.com, so you should of course change this to your domain in `wp/*tls_Ingress.yaml` files.__
+   __Note: The default domain name is mysite1.com, so you should of course change this to your domain in `wp/*tls_Ingress.yaml` files.__
   
   ```bash
   $ kubectl apply -f wp/gce-volume.yaml
@@ -124,7 +124,7 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
   $ kubectl apply -f lego/kube-lego-RBAC.yaml
   ```
 
-  * Make sure your site is available at http://www.wingdings.com
+  * Make sure your site is available at http://mysite1.com
   * Finally, enable TLS for you site's Ingress.
   
     ```bash
