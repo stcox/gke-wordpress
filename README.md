@@ -1,6 +1,6 @@
 work in progress
-# Kubernetes WordPress - Helm Charts
-**Kubernetes WordPress** is a set of Kubernetes Helm Charts and ConfigMaps for deploying multiple WordPress-optimized LEMP stacks, or Pods, within a Kubernetes cluster. It enables anyone to deploy multiple WordPress installations for any number of websites. It's built to be secure and very fast by default.
+# Kubernetes WordPress
+**Kubernetes WordPress** is a set of Kubernetes Helm Charts, ConfigMaps and values, for deploying multiple, scalable WordPress-optimized LEMP stacks (Deployments), within a Kubernetes cluster. It enables anyone to deploy multiple WordPress installations for any number of websites. It's built to be secure and very fast by default.
 
   - Supports [Google Compute Engine](https://cloud.google.com/compute/) and [Google Cloud SQL](https://cloud.google.com/sql/) as cloud providers. Other providers haven't been tested (things like `PersistentVolume` and `Ingress` depend on your cloud provider).
 
@@ -19,20 +19,20 @@ work in progress
   * NGINX is built with the [`nginx-naxsi`](https://github.com/chepurko/nginx-naxsi) image, which comes with:
     * NBS System's [NAXSI module](https://github.com/nbs-system/naxsi). NAXSI means [NGINX](http://nginx.org/) Anti-[XSS](https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29) & [SQL Injection](https://www.owasp.org/index.php/SQL_injection).
     * Handy configurations for NGINX and the NAXSI web application firewall are also included via `ConfigMap`s.
-  
+
 * **MariaDB**
-  * Initially, the WordPress pods all interface with one [Google Cloud SQL](https://cloud.google.com/sql/) database server. This is so anyone can start off with a full-fledged web farm and bring up any number of websites using one HA Cloud SQL server instance with a database for each site.
-  
+  * Initially, the WordPress pods all interface with one [Google Cloud SQL](https://cloud.google.com/sql/) database server. This is so anyone can start off with a full-fledged web farm and bring up any number of websites using a Cloud SQL server instance with a database for each site.
+
 * **Redis**
   * To reduce hits to the DB we build the WP image with the `redis` PHP extension and include a Redis `Deployment`.
   * WP must be configured to use Redis upon initialising a new WP site by installing and configuring the WP [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin.
-  
+
 * **Ingress/Kube Lego**
   * Websites are reached externally via an `nginx` `Ingress` controller. See Kubernetes documentation regarding `Ingress` in the [official docs](https://kubernetes.io/docs/user-guide/ingress/ "Ingress Resources") and on [GitHub](https://github.com/kubernetes/ingress/blob/master/controllers/nginx/README.md "NGINX Ingress Controller").
   * All TLS is terminated at `Ingress` via free Let's Encrypt certificates good for all domains on your cluster. Better yet, certificate issuance is handled automatically with the awesome [Kube Lego](https://github.com/jetstack/kube-lego "Kube Lego").
 
 * See [**Installation and Usage**](USAGE.md) for instructions on getting up and running.
-  
+
 ![Kubernetes WordPress Architecture](k8s-wordpress.png "Kubernetes WordPress Architecture")
 
 ## TODO
