@@ -1,0 +1,4 @@
+apiVersion: v1
+description: LetsEncrypt Certificate Manager
+name: kube-lego
+version: 0.1.0
