@@ -1,6 +1,6 @@
 work in progress
 
-# WordPress - Nginx - CloudSQL Kubernetes Helm Charts
+# WordPress-Nginx-CloudSQL Kubernetes Helm Charts
 Host multiple WordPress sites while sharing the same external Google CloudSQL database server.
 Each site has its own Kubernetes Namespace with one or more Pods containing:
 - a WordPress/PHP-FPM container with Redis extensions
