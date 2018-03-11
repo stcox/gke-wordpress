@@ -15,5 +15,5 @@ An existing Kubernetes cluster with active Redis, Kube-Lego, and an Ingress cont
 Installation and Usage
 Visit USAGE.md.
 
-Acknowledgements
+## Acknowledgements
 This project was inspired by [daxio/k8s-lemp](https://github.com/daxio/k8s-lemp) and builds on it with the various other official Docker images and Kubernetes applications mentioned previously.
