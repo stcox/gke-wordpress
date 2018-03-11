@@ -14,7 +14,7 @@ Use as your own personal web server farm! Use it as a backend to your own cloud 
 * **WordPress**
   * Each WordPress installation is based on the [wordpress:php7.2-fpm](https://hub.docker.com/r/_/wordpress/ "Official WordPress Docker image") image with extra required PHP extensions such as `redis`. WordPress is contained in one `Deployment` controller along with an NGINX container with FastCGI caching and the NAXSI web application firewall.
   * Each WordPress `Deployment` gets it's own `PersistentVolume` as well as `Secret` objects for storing sensitive information such as passwords for their DBs.
-  * `ConfigMap`s are used to inject various `php.ini` settings for PHP 7.1.
+  * `ConfigMap`s are used to inject various `php.ini` settings for PHP 7.2.
 
 * **NGINX**
   * The NGINX container has multiple handy configurations for multi-site and caching, all easily deployed using `ConfigMap` objects.
