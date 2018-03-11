@@ -1,8 +1,10 @@
 # Kubernetes WordPress
-**Kubernetes WordPress** is a set of Kubernetes Helm Charts, ConfigMaps and values, for deploying multiple, scalable WordPress-optimized LEMP stacks (Deployments), within a Kubernetes cluster. It enables anyone to deploy multiple WordPress installations for any number of websites. It's built to be secure and very fast by default.
+**Kubernetes WordPress** is a set of Kubernetes Helm Charts, ConfigMaps and values, that enable anyone to deploy multiple, scalable WordPress sites as LEMP Pods within a Kubernetes cluster. It's built to be secure and very fast by default.
 
-  - Supports [Google Compute Engine](https://cloud.google.com/compute/) and [Google Cloud SQL](https://cloud.google.com/sql/) as cloud providers. Other providers haven't been tested (things like `PersistentVolume` and `Ingress` depend on your cloud provider).
-
+Supports:
+- [Google Compute Engine](https://cloud.google.com/compute/ "Google Compute Engine")
+- [Google Cloud SQL](https://cloud.google.com/sql/ "Google Cloud SQL") as cloud providers. Other providers haven't been tested (things like `PersistentVolume` and `Ingress` depend on your cloud provider).
+- [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/ "Google Kubernetes Engine")
   - Designed more or less in the traditional LEMP fashion where you get a bucket for all of your HTML at `/var/www/html`.
 
   - Use as your own personal web server farm! Use it as a backend to your own cloud hosting company! We're moving towards extra customisation in terms of web server and security hardening measures.
