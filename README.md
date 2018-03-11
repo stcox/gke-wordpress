@@ -1,5 +1,5 @@
 # Kubernetes WordPress - Helm Charts
-**Kubernetes WordPress** is a distributed WordPress-optimized LEMP stack built on top of a Kubernetes cluster. It enables anyone to deploy multiple WordPress installations for any number of websites. It's built to be secure and very fast by default.
+**Kubernetes WordPress** is a set of Kubernetes Helm Charts and ConfigMaps for deploying multiple WordPress-optimized LEMP stacks, or Pods, within a Kubernetes cluster. It enables anyone to deploy multiple WordPress installations for any number of websites. It's built to be secure and very fast by default.
 
   - Supports [Google Compute Engine](https://cloud.google.com/compute/) and [Google Cloud SQL](https://cloud.google.com/sql/) as cloud providers. Other providers haven't been tested (things like `PersistentVolume` and `Ingress` depend on your cloud provider).
 
@@ -41,4 +41,4 @@
 Visit [USAGE.md](USAGE.md).
 
 ## Acknowledgements
-This project was inspired by  and based on [daxio/k8s-lemp](https://github.com/daxio/k8s-lemp "Kubernetes LEMP Stack") and builds on it with the various other official Docker images and Kubernetes applications mentioned previously.
+This project was inspired by and based on [daxio/k8s-lemp](https://github.com/daxio/k8s-lemp "Kubernetes LEMP Stack") and builds on it with the various other official Docker images and Kubernetes applications mentioned previously.
