@@ -4,6 +4,8 @@ metadata:
   name: default-http-backend
   namespace: nginx-ingress
   labels:
+    app: default
+    tier: ingress
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
