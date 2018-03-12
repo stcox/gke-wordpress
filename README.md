@@ -3,6 +3,7 @@
 
 Kubernetes WordPress supports:
 - [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/docs/quickstart "Google Kubernetes Engine") for container orchestration.
+- [Google Compute Engine](https://cloud.google.com/compute/ "Google Compute Engine")
 - [Google Cloud SQL](https://cloud.google.com/sql/docs/mysql/quickstart "Google Cloud SQL") for database services.
 - [Helm, the Kubernetes Package Manager](https://helm.sh/)
 
