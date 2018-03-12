@@ -122,7 +122,7 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
   $ kubectl apply -f lego/kube-lego-RBAC.yaml
   ```
 
-  * Make sure your site is available at http://mysite1.com
+  * Make sure your site is available at https://mysite1.com
   * Finally, enable TLS for you site's Ingress.
   
     ```bash
