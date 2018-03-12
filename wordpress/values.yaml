@@ -4,6 +4,9 @@ domain: mydomain          # Domain, e.g., mysite.com, www.mysite.net, etc.
 storage: 5Gi              # Storage Size
 tls: false                # Set to true for HTTPS/TLS/SSL, if 'domain' is public
 
+maxSurge: 0
+maxUnavailable: 1
+
 # Requests & Limits - Memory & CPU:
 #requestsMemory: 256Mi
 #requestsCpu: 250m
