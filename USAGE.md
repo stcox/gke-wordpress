@@ -135,7 +135,7 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
 
 ### Adding a website
 * Declare your new website in another directory
-  * Make a copy of the `wp/` directory and give it a short name with your website in mind, e.g. `wp-dd/` for "www.doodads.com"
+  * Make a copy of the `wp/` directory and give it a short name with your website in mind, e.g. `wp-dd/` for "mysite2.com"
 
 * Update the short name values in your new `wp-dd/*.yaml` files to the corresponding website short name. E.g. `wp-dd`, `wp-dd-pv-claim`, etc.
   ```bash
@@ -206,7 +206,7 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
   $ kubectl apply -f wp-dd/wp-dd-Service.yaml
   $ kubectl apply -f wp-dd/notls-Ingress.yaml
   ```
-  * Make sure your site is available at http://www.doodads.com
+  * Make sure your site is available at https://mysite2.com
   
   ```bash
   $ kubectl apply -f wp-dd/tls-Ingress.yaml # Enable TLS for your site's Ingress
@@ -215,10 +215,10 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
 ### Canary deployments
 The best way to push and deploy changes to a production website is with a development or "canary" version which is initially separate from the production site. With WordPress this entails following the [Adding a website](#adding-a-website) section.
 
-* Add an A record in your domain's DNS settings with another name like "dev" pointing to the same Ingress IP address. So the URL of this site would be like https://dev.doodads.com.
+* Add an A record in your domain's DNS settings with another name like "dev" pointing to the same Ingress IP address. So the URL of this site would be like https://dev.mysite2.com.
 * Follow the [Adding a website](#adding-a-website) section and use this new URL for your Ingress resources. This time, use a short name following some versioning scheme. For example `wp-dd-v2` (this is what we will use going forward).
 * Make sure to create another database in MariaDB as well, again using your new "wp-dd-v2" short name.
-* Once your site is available at https://dev.doodads.com, you'll basically have a fresh WordPress site, just as before.
+* Once your site is available at https://dev.mysite2.com, you'll basically have a fresh WordPress site, just as before.
 * Now, the best way we have found to get a replica of your production site into this new "dev" domain is to use a backup or replication plugin. This is cleaner and easier than copying raw files and databases and WordPress handles everything such as search/replacing domain names and putting things in the right place. There are various plugins such as [UpdraftPlus](https://wordpress.org/plugins/updraftplus/). Just use one that can backup/restore and clone/migrate your site to a different domain.
 * Now you have two sites, where you can essentially try any new crazy ideas on the *frontend* (themes, design) or *backend* (server/DB configurations) of your canary site until you're happy with it and decide to start **live testing**.
 
@@ -226,7 +226,7 @@ The best way to push and deploy changes to a production website is with a develo
 
 You can, of course, try updating the defintions of the production site to your new specs and utilise an in-place `RollingUpdate` to bring up your new backend, but we're going for the professional route here because, well, Kubernetes makes it fun and easy.
 
-With our awesome Kubernetes LEMP Stack setup we can simply create another `Deployment` with our new "canary" backend behind our current production `Service`. This way we'll have 2 `Deployment`s behind our 1 `Service` which is answering requests on the main https://www.doodads.com domain. The 2 `Deployments` will be hit round-robin until we take down the old version and just leave the new version running. **All without interrupting site traffic**.
+With our awesome Kubernetes LEMP Stack setup we can simply create another `Deployment` with our new "canary" backend behind our current production `Service`. This way we'll have 2 `Deployment`s behind our 1 `Service` which is answering requests on the main https://mysite2.com domain. The 2 `Deployments` will be hit round-robin until we take down the old version and just leave the new version running. **All without interrupting site traffic**.
 
 * First, start by making sure your dev site is duplicated from your production site and you have your backend configuration setup.
   * **NOTE:** Depending on what you want to acheive, site duplication procedures can vary significantly. For example, if you want to duplicate your production site straight into your canary and begin live testing them round-robin, then you **do not** want to do a search-and-replace on the database for the domain name. You want a pristine copy of the production site dropped into your canary site.
@@ -239,7 +239,7 @@ With our awesome Kubernetes LEMP Stack setup we can simply create another `Deplo
   $ vim ~/wp-config.php
   ```
 
-  * Update the URL in the line `define('DOMAIN_CURRENT_SITE', 'dev.doodads.com');` to your production site URL (www.doodads.com). Then copy the file back to your pod:
+  * Update the URL in the line `define('DOMAIN_CURRENT_SITE', 'dev.mysite2.com');` to your production site URL (mysite2.com). Then copy the file back to your pod:
 
   ```bash
   $ kubectl ~/wp-config.php cp wp-dd-v2-xxxxxxxxxx-xxxxx:/var/www/html/wp-config.php
@@ -303,7 +303,7 @@ With our awesome Kubernetes LEMP Stack setup we can simply create another `Deplo
   $ kubectl apply -f wp-dd-v2-Service.yaml
   ```
 
-* If all went according to plan, you should now be hitting both, the prod. and canary Deployments at the URL https://www.doodads.com, in a round-robin pattern. Awesome!
+* If all went according to plan, you should now be hitting both, the prod. and canary Deployments at the URL https://mysite2.com, in a round-robin pattern. Awesome!
 
 * If you want to easily switch between the production and canary sites, all you have to do is add a Selector to your deployed Service:
 
