@@ -7,9 +7,7 @@ metadata:
     release: {{ .Release.Name }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
 data:
-  # modify this to specify your address
   lego.email: {{ .Values.legoEmail | quote }}
-  # configure letencrypt's production api
   lego.url: "https://acme-v01.api.letsencrypt.org/directory"
 kind: ConfigMap
 ---
