@@ -1,2 +1,4 @@
 legoEmail: myemail@mydomain
 replicas: 1
+maxSurge: 1
+maxUnavailable: 1
