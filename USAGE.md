@@ -9,7 +9,7 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
 * You need a Kubernetes cluster on Google Compute Engine. This is as easy as following the [official Kubernetes guide](https://kubernetes.io/docs/getting-started-guides/gce/ "Running Kubernetes on Google Compute Engine").
 * You need a Google CloudSQL Database Server. This is as easy as following the [official Google Cloud SQL guide](https://cloud.google.com/sql/docs/mysql/quickstart "Running Google Cloud SQL").
 * You should be comfortable with basic SQL statements, i.e. creating and managing DBs, users, grants.
-* You also need a domain and access to its DNS settings. These instructions use the generic domain names www.mysite1.com and www.mysite2.com.
+* You also need a domain and access to its DNS settings. These instructions use the generic domain names mysite1.com and mysite2.com.
 * Upon deploying WordPress you should install:
     * [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin to connect your site to the Redis `Deployment`
     * A cache-clearing plugin such as [NGINX Cache](https://wordpress.org/plugins/nginx-cache/) if you want to make sure changes appear on your website promptly. There are also other plugins such as [NGINX Helper](https://wordpress.org/plugins/nginx-helper/) but this requires an additional NGINX module and we have not successfully tested this plugin.
