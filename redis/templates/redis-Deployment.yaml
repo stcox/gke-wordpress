@@ -17,26 +17,47 @@ spec:
     tier: mysql-cache
   type: ClusterIP
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
+  creationTimestamp: null
   name: redis
   namespace: redis
   labels:
     app: redis
     tier: mysql-cache
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+      tier: mysql-cache
   strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
     type: RollingUpdate
   template:
+    creationTimestamp: null
     metadata:
       labels:
         app: redis
         tier: mysql-cache
     spec:
       containers:
-      - image: redis:4
+      - image: redis:4.0.6
+        imagePullPolicy: IfNotPresent
         name: redis
         ports:
         - containerPort: 6379
           name: redis
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}
