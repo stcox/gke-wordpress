@@ -40,7 +40,6 @@ Use as your own personal web server farm! Use it as a backend to your own cloud 
 
 ## TODO
 - Upgrade kube-lego to cert-manager
-- Add RBAC support
 
 ## Installation and Usage
 Visit [USAGE.md](USAGE.md).
