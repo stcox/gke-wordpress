@@ -23,7 +23,7 @@ Use as your own personal web server farm! Use it as a backend to your own cloud 
     * NBS System's [NAXSI module](https://github.com/nbs-system/naxsi). NAXSI means [NGINX](http://nginx.org/) Anti-[XSS](https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29) & [SQL Injection](https://www.owasp.org/index.php/SQL_injection).
     * Handy configurations for NGINX and the NAXSI web application firewall are also included via `ConfigMap`s.
 
-* **MariaDB**
+* **Cloud SQL**
   * Initially, the WordPress pods all interface with one [Google Cloud SQL](https://cloud.google.com/sql/) database server. This is so anyone can start off with a full-fledged web farm and bring up any number of websites using a Cloud SQL server instance with a database for each site.
 
 * **Redis**
