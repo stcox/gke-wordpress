@@ -1,5 +1,5 @@
 # Kubernetes WordPress
-**Kubernetes WordPress** is a set of Kubernetes Helm Charts that enable anyone to deploy multiple, scalable WordPress sites as LEMP Pods within a Kubernetes cluster. It's built to be secure and very fast by default.
+**Kubernetes WordPress** is a set of Kubernetes [Helm]((https://helm.sh/)) Charts that enable anyone to deploy multiple, scalable WordPress sites as LEMP Pods within a Kubernetes cluster. It's built to be secure and very fast by default.
 
 Kubernetes WordPress supports:
 - [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/docs/quickstart "Google Kubernetes Engine") for container orchestration.
