@@ -1,8 +1,8 @@
 # Basic Site Info
 name: mysite1-com         # Virtual Cluster Namespace (A-z,0-9,'-'), appears as namespace 'wp-mysite1-com'
-domain: mydomain          # Domain, e.g., mysite1.com, mysite2.com, dev.anysite.com, etc.
+domain: mysite1.com       # Domain, e.g., mysite1.com, mysite2.com, dev.anysite.com, etc.
 storage: 5Gi              # Storage Size
-tls: true                 # Set to true for HTTPS/TLS/SSL
+tls: false                # Set to true for HTTPS/TLS/SSL
 
 maxSurge: 0
 maxUnavailable: 1
