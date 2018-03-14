@@ -42,7 +42,7 @@ Use as your own personal web server farm! Use it as a backend to your own cloud 
 - Upgrade kube-lego to cert-manager
 
 ## Installation and Usage
-Visit [USAGE.md](USAGE.md).
+Visit [USAGE.md](USAGE.md "Installation & Usage").
 
 ## Acknowledgements
 This project was inspired by and based on [daxio/k8s-lemp](https://github.com/daxio/k8s-lemp "Kubernetes LEMP Stack") and builds on it with the various other official Docker images and Kubernetes applications mentioned previously.
