@@ -58,9 +58,13 @@ $ cd wp-sites
 
 1. Create a persistent disk for `mysite1-com` files. Be sure to prefix the namespace with `wp-`.
 ```bash
-# zones at https://console.cloud.google.com/compute/instanceGroups/list
-$ gcloud compute disks create --size=5GB --zone=<zone> wp-**mysite-com**
+$ gcloud compute disks create --size=5GB --zone=<**ZONE**> wp-**mysite-com**
+# find your **ZONE** at https://console.cloud.google.com/compute/instanceGroups/list
 ```
+
+2. Create two files called `.dbuser` and `.dbpw` and put them in the site folder `/wp-sites/mysite1-com`. Put
+
+
 
 2. Add a namespace `mysite1-com`, with site domain `mysite1.com`:
 - a. Create a `mysite1-com folder`, then cd to it.
@@ -72,7 +76,7 @@ $ gcloud compute disks create --size=5GB --zone=<zone> wp-**mysite-com**
 
 3. With your favorite editor, edit the `/wp-sites/mysite1-com/values.yaml` file and change the `name` value to `mysite1-com` and the `domain` value to `mysite1.com`, and save your changes.
 
-4. From your site folder, /wp-sites/mysite1-com, install site helm chart:
+5. From values from your site folder, /wp-sites/mysite1-com, install WordPress helm chart:
 ```bash
 /wp-sites/mysite1-com $ helm install -f values.yaml ../../wordpress
 ```
