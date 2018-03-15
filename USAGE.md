@@ -16,9 +16,9 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
 
 ## Installation
 
-1. Install Charts
-  a. Clone [Kubernetes WordPress](https://github.com/stcox/k8s-wordpress.git) project
-  b. 'cd' to project root.
+1. Install Kubernetes WordPress Charts
+- a. Clone [Kubernetes WordPress](https://github.com/stcox/k8s-wordpress.git) project
+- b. 'cd' to project root.
 
 2. [Create a Second Generation Google Cloud SQL Instance](https://cloud.google.com/sql/docs/mysql/create-instance).
 
@@ -54,7 +54,13 @@ $ cd wp-sites
 
 ### Adding a website
 
-1. To add a namespace `mysite1-com`, with site domain `mysite1.com`:
+0. Create a persistent disk for `mysite1-com` files. Be sure to prefix the namespace with `wp-`.
+```bash
+# zones at https://console.cloud.google.com/compute/instanceGroups/list
+$ gcloud compute disks create --size=5GB --zone=<zone> wp-**mysite-com**
+```
+
+1. Add a namespace `mysite1-com`, with site domain `mysite1.com`:
 - a. Create a `mysite1-com folder`, then cd to it.
 - b. Make a copy of the default wordpress/values.yaml file
 ```bash
