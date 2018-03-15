@@ -67,8 +67,8 @@ $ gcloud compute disks create --size=5GB --zone=<**ZONE**> wp-**mysite-com**
 
 
 2. Add a namespace `mysite1-com`, with site domain `mysite1.com`:
--- a. Create a `mysite1-com folder`, then cd to it.
--- b. Make a copy of the default wordpress/values.yaml file
+  a. Create a `mysite1-com folder`, then cd to it.
+  b. Make a copy of the default wordpress/values.yaml file
 ```bash
 /wp-sites $ mkdir mysite1-com && cd mysite1-com
 /wp-sites/mysite1-com $ cp ../../wordpress/values.yaml values.yaml
