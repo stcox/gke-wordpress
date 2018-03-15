@@ -58,17 +58,14 @@ $ cd wp-sites
 
 ### Adding a website
 
-1. To add a site named mysite1.com with namespace mysite1-com:
-- a. Create a 'mysite1-com folder', then 'cd' to that folder
+1. To add a namespace `mysite1-com`, with site domain `mysite1.com`:
+- a. Create a `mysite1-com folder`, then cd to it.
 - b. Make a copy of the default wordpress/values.yaml file
-
 ```bash
 /wp-sites $ mkdir mysite1-com && cd mysite1-com
 /wp-sites/mysite1-com $ cp ../../wordpress/values.yaml values.yaml
 ```
-
 2. With your favorite editor, edit the `/wp-sites/mysite1-com/values.yaml` file and change the `name` value to `mysite1-com` and the `domain` value to `mysite1.com`, and save your changes.
-
 3. From your site folder, /wp-sites/mysite1-com, install site helm chart:
 ```bash
 /wp-sites/mysite1-com $ helm install -f values.yaml ../../wordpress
