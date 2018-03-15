@@ -1,6 +1,6 @@
 # Basic Site Info
 name: namespace  # Kubernetes Namespace (A-z,0-9,'-'),
-domain: domain   # Domain, e.g., mysite1.com, dev.mynamespace., etc.
+domain: domain   # Domain, e.g., mysite1.com, dev.mysite2.net, etc.
 storage: 5Gi     # Storage Size
 tls: false       # Set to true for HTTPS/TLS/SSL
 replicas: 1
