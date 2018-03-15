@@ -9,12 +9,9 @@ maxSurge: 0
 maxUnavailable: 1
 
 # Cloud SQL Instance Name
-instanceConnectionName: myproject:myregion:mydb         # SET 'instanceConnectionName' above with an Instance Connection Name
-                                                        # from https://console.cloud.google.com/sql/instances.
-                                                        # USAGE: [GCP Project]:[region]:[CloudSQL Name]
-                                                        # e.g., myproject-123456:us-central1:mydb
+instanceConnectionName: myproject:myregion:mydb # https://console.cloud.google.com/sql/instances.
 
-enableResourceLimits: false                             # If true, adjust below
+enableResourceLimits: false  # If true, adjust below
 requestsMemory: 256Mi
 requestsCpu: 250m
 limitsMemory: 512Mi
