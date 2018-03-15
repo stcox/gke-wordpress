@@ -14,10 +14,6 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
     * [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin to connect your site to the Redis `Deployment`
     * A cache-clearing plugin such as [NGINX Cache](https://wordpress.org/plugins/nginx-cache/) if you want to make sure changes appear on your website promptly. There are also other plugins such as [NGINX Helper](https://wordpress.org/plugins/nginx-helper/) but this requires an additional NGINX module and we have not successfully tested this plugin.
 
-
-https://github.com/stcox/k8s-wordpress.git
-
-
 ## Installation
 
 1. Install Charts
