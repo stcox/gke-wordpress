@@ -67,8 +67,8 @@ $ gcloud compute disks create --size=5GB --zone=<**ZONE**> wp-**mysite-com**
 
 
 2. Add a namespace `mysite1-com`, with site domain `mysite1.com`:
-- a. Create a `mysite1-com folder`, then cd to it.
-- b. Make a copy of the default wordpress/values.yaml file
+-- a. Create a `mysite1-com folder`, then cd to it.
+-- b. Make a copy of the default wordpress/values.yaml file
 ```bash
 /wp-sites $ mkdir mysite1-com && cd mysite1-com
 /wp-sites/mysite1-com $ cp ../../wordpress/values.yaml values.yaml
@@ -76,7 +76,7 @@ $ gcloud compute disks create --size=5GB --zone=<**ZONE**> wp-**mysite-com**
 
 3. With your favorite editor, edit the `/wp-sites/mysite1-com/values.yaml` file and change the `name` value to `mysite1-com` and the `domain` value to `mysite1.com`, and save your changes.
 
-5. From values from your site folder, /wp-sites/mysite1-com, install WordPress helm chart:
+5. Install WordPress helm chart with `mysite1-com` values.
 ```bash
 /wp-sites/mysite1-com $ helm install -f values.yaml ../../wordpress
 ```
