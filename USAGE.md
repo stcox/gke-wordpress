@@ -17,8 +17,8 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
 ## Installation
 
 1. Install Kubernetes WordPress Charts
-- a. Download/clone [Kubernetes WordPress](https://github.com/stcox/k8s-wordpress.git) project
-- b. 'cd' to project root.
+  a. Download/clone [Kubernetes WordPress](https://github.com/stcox/k8s-wordpress.git) project
+  b. 'cd' to project root.
 
 2. [Create a Google Cloud SQL Instance](https://cloud.google.com/sql/docs/mysql/create-instance).
 
