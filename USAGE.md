@@ -17,12 +17,14 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
 ## Installation
 
 1. Install Kubernetes WordPress Charts
-- a. Clone [Kubernetes WordPress](https://github.com/stcox/k8s-wordpress.git) project
+- a. Download/clone [Kubernetes WordPress](https://github.com/stcox/k8s-wordpress.git) project
 - b. 'cd' to project root.
 
-2. [Create a Second Generation Google Cloud SQL Instance](https://cloud.google.com/sql/docs/mysql/create-instance).
+2. [Create a Google Cloud SQL Instance](https://cloud.google.com/sql/docs/mysql/create-instance).
 
-3. Install Helm & Tiller
+3. [Create a Cloud SQL Client Service Account and save credentials.json]()
+
+4. Install Helm & Tiller
 ```bash
 $ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
 
@@ -35,14 +37,14 @@ $HELM_HOME has been configured at $HOME/.helm.
 Tiller (the Helm server-side component) has been installed into your Kubernetes Cluster.
 ```
 
-4. Install core services: Nginx-Ingress, Kube-Lego and Redis
+5. Install core services: Nginx-Ingress, Kube-Lego and Redis
 ```bash
 $ helm install nginx-ingress
 $ helm install kube-lego
 $ helm install redis
 ```
 
-5. In the project root folder, create and change to a folder called 'wp-sites'. This folder will list site folders you've created and is included in .gitignore.
+6. In the project root folder, create and change to a folder called 'wp-sites'. This folder will list site folders you've created and is included in .gitignore.
 
 ```bash
 $ mkdir wp-sites
@@ -54,27 +56,26 @@ $ cd wp-sites
 
 ### Adding a website
 
-0. Create a persistent disk for `mysite1-com` files. Be sure to prefix the namespace with `wp-`.
+1. Create a persistent disk for `mysite1-com` files. Be sure to prefix the namespace with `wp-`.
 ```bash
 # zones at https://console.cloud.google.com/compute/instanceGroups/list
 $ gcloud compute disks create --size=5GB --zone=<zone> wp-**mysite-com**
 ```
 
-1. Add a namespace `mysite1-com`, with site domain `mysite1.com`:
+2. Add a namespace `mysite1-com`, with site domain `mysite1.com`:
 - a. Create a `mysite1-com folder`, then cd to it.
 - b. Make a copy of the default wordpress/values.yaml file
 ```bash
 /wp-sites $ mkdir mysite1-com && cd mysite1-com
 /wp-sites/mysite1-com $ cp ../../wordpress/values.yaml values.yaml
 ```
-2. With your favorite editor, edit the `/wp-sites/mysite1-com/values.yaml` file and change the `name` value to `mysite1-com` and the `domain` value to `mysite1.com`, and save your changes.
-3. From your site folder, /wp-sites/mysite1-com, install site helm chart:
+
+3. With your favorite editor, edit the `/wp-sites/mysite1-com/values.yaml` file and change the `name` value to `mysite1-com` and the `domain` value to `mysite1.com`, and save your changes.
+
+4. From your site folder, /wp-sites/mysite1-com, install site helm chart:
 ```bash
 /wp-sites/mysite1-com $ helm install -f values.yaml ../../wordpress
 ```
-
-
-
 
 ## Acknowledgements
 This project was inspired by [daxio/k8s-lemp](https://github.com/daxio/k8s-lemp) and builds on it with the various other official Docker images and Kubernetes applications mentioned previously.
