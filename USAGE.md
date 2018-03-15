@@ -6,7 +6,7 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
 - a Google Cloud SQL proxy container to a on a Cloud SQL database server
 
 ## Prerequisites
-* You need a Kubernetes cluster on Google Compute Engine. Follow the [official Kubernetes guide](https://kubernetes.io/docs/getting-started-guides/gce/ "Running Kubernetes on Google Compute Engine").
+* You need a Kubernetes cluster on Google Compute Engine. Follow the [official Kubernetes guide](https://cloud.google.com/kubernetes-engine/docs/quickstart "Running Kubernetes on Google Compute Engine").
 * You need a Google Cloud SQL Database Server. Follow the [official Google Cloud SQL guide](https://cloud.google.com/sql/docs/mysql/quickstart "Running Google Cloud SQL").
 * You should be comfortable with basic SQL statements, i.e. creating and managing DBs, users, grants.
 * You also need a domain and access to its DNS settings. These instructions use the generic domain names mysite1.com and mysite2.com.
@@ -58,15 +58,21 @@ $ cd wp-sites
 
 ### Adding a website
 
-1. Create a mysite1-com folder 'cd' to folder and make a copy of the default wordpress/values.yaml file
+1. To add a site named mysite1.com with namespace mysite1-com:
+- a. Create a 'mysite1-com folder', then 'cd' to that folder
+- b. Make a copy of the default wordpress/values.yaml file
 
 ```bash
 /wp-sites $ mkdir mysite1-com && cd mysite1-com
 /wp-sites/mysite1-com $ cp ../../wordpress/values.yaml values.yaml
 ```
 
-2. Edit the /wp-sites/mysite1-com/values.yaml file and change the 'name' value to 'mysite1-com' and the 'domain' value to 'mysite1.com'
+2. With your favorite editor, edit the `/wp-sites/mysite1-com/values.yaml` file and change the `name` value to `mysite1-com` and the `domain` value to `mysite1.com`, and save your changes.
 
+3. From your site folder, /wp-sites/mysite1-com, install site helm chart:
+```bash
+/wp-sites/mysite1-com $ helm install -f values.yaml ../../wordpress
+```
 
 
 
