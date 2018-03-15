@@ -1,8 +1,9 @@
 # Basic Site Info
-name: mysite1-com         # Kubernetes Namespace (A-z,0-9,'-'), will get namespace prefix 'wp-' automatically, i.e., 'wp-mysite1-com'
-domain: mysite1.com       # Domain, e.g., mysite1.com, mysite2.com, dev.anysite.com, etc.
-storage: 5Gi              # Storage Size
-tls: false                # Set to true for HTTPS/TLS/SSL
+name: mynamespace     # Kubernetes Namespace (A-z,0-9,'-'),
+                      # will get namespace prefix 'wp-' automatically, i.e.,  'wp-mysite1-com'
+domain: mydomain.com  # Domain, e.g., mysite1.com, dev.anysite.com, etc.
+storage: 5Gi          # Storage Size
+tls: false            # Set to true for HTTPS/TLS/SSL
 replicas: 1
 maxSurge: 0
 maxUnavailable: 1
