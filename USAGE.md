@@ -10,11 +10,9 @@
 * You need Helm & Tiller installed. Follow the guide to [Install Helm & Tiller](https://docs.helm.sh/using_helm/#installing-helm), or go to the project directory and execute:
 ```bash
 $ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
-
 $ kubectl create -f tiller-rbac-config.yaml
 serviceaccount "tiller" created
 clusterrolebinding "tiller" created
-
 $ helm init --service-account tiller
 $HELM_HOME has been configured at $HOME/.helm.
 Tiller (the Helm server-side component) has been installed into your Kubernetes Cluster.
@@ -26,19 +24,16 @@ Tiller (the Helm server-side component) has been installed into your Kubernetes 
   - b. 'cd' to project root.
 
 2. Install core services: Nginx-Ingress, Kube-Lego and Redis
+From project root folder, run:
 ```bash
 $ helm install nginx-ingress
 $ helm install kube-lego
 $ helm install redis
 ```
 
-3.
-
-In the project root folder, create and change to a folder called 'wp-sites'. This folder will list site folders you've created and is included in .gitignore.
-
+3. From project root, create and change to folder `wp-sites`. This is where you'll keep your site secrets and configuration values.yaml, and it's included in .gitignore.
 ```bash
-$ mkdir wp-sites
-$ cd wp-sites
+$ mkdir wp-sites && cd wp-sites
 /wp-sites $
 ```
 
