@@ -8,6 +8,7 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
 ## Prerequisites
 * You need a Kubernetes cluster on Google Compute Engine. Follow the [official Kubernetes guide](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-container-cluster "Creating a Container Cluster").
 * You need a Google Cloud SQL Database Server. Follow the [official Google Cloud SQL guide](https://cloud.google.com/sql/docs/mysql/create-instance "Create Google Cloud SQL instance").
+* You need to save the Google Cloud SQL credentials to `wp-sites/credentials.json`.
 * You should be comfortable with basic SQL statements, i.e. creating and managing DBs, users, grants.
 * You also need a domain and access to its DNS settings. These instructions use the generic domain names mysite1.com and mysite2.com as example sites.
 * Upon deploying WordPress you should install:
@@ -17,8 +18,8 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
 ## Installation
 
 1. Create Database Server and save credentials
-	a. [Create a Google Cloud SQL Instance](https://cloud.google.com/sql/docs/mysql/create-instance).
-	b. [Create a Cloud SQL Client Service Account and save credentials to `wp-secrets/credentials.json`](https://cloud.google.com/sql/docs/mysql/create-manage-users)
+	1. [Create a Google Cloud SQL Instance](https://cloud.google.com/sql/docs/mysql/create-instance).
+	2. [Create a Cloud SQL Client Service Account and save credentials to `wp-secrets/credentials.json`](https://cloud.google.com/sql/docs/mysql/create-manage-users)
 
 2. Install Helm & Tiller
 ```bash
