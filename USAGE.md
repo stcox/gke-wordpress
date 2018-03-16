@@ -16,15 +16,11 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
 
 ## Installation
 
-1. Install Kubernetes WordPress Helm Charts to local computer
-  a. Download/clone [Kubernetes WordPress](https://github.com/stcox/k8s-wordpress.git) project
-  b. 'cd' to project root.
+1. Create Database Server and save credentials
+	a. [Create a Google Cloud SQL Instance](https://cloud.google.com/sql/docs/mysql/create-instance).
+	b. [Create a Cloud SQL Client Service Account and save credentials to `wp-secrets/credentials.json`](https://cloud.google.com/sql/docs/mysql/create-manage-users)
 
-2. [Create a Google Cloud SQL Instance](https://cloud.google.com/sql/docs/mysql/create-instance).
-
-3. [Create a Cloud SQL Client Service Account and save credentials.json]()
-
-4. Install Helm & Tiller
+2. Install Helm & Tiller
 ```bash
 $ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
 
@@ -37,21 +33,25 @@ $HELM_HOME has been configured at $HOME/.helm.
 Tiller (the Helm server-side component) has been installed into your Kubernetes Cluster.
 ```
 
-5. Install core services: Nginx-Ingress, Kube-Lego and Redis
+3. Install Kubernetes WordPress Helm Charts to local computer
+  a. Download/clone [Kubernetes WordPress](https://github.com/stcox/k8s-wordpress.git) project
+  b. 'cd' to project root.
+
+4. Install core services: Nginx-Ingress, Kube-Lego and Redis
 ```bash
 $ helm install nginx-ingress
 $ helm install kube-lego
 $ helm install redis
 ```
 
-6. In the project root folder, create and change to a folder called 'wp-sites'. This folder will list site folders you've created and is included in .gitignore.
+5. In the project root folder, create and change to a folder called 'wp-sites'. This folder will list site folders you've created and is included in .gitignore.
 
 ```bash
 $ mkdir wp-sites
 $ cd wp-sites
 /wp-sites $
 ```
-7. Copy Cloud SQL credentials.json file to /wp-sites
+6. Copy Cloud SQL credentials.json file to /wp-sites
 
 ## Usage
 
