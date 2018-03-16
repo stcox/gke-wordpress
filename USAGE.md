@@ -7,12 +7,14 @@
 * Upon deploying WordPress you should install:
   * [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin to connect your site to the Redis `Deployment`
   * The cache-clearing plugin [NGINX Cache](https://wordpress.org/plugins/nginx-cache/) if you want to make sure changes appear on your website promptly.
-* You need Helm & Tiller installed. Follow the guide to [Install Helm & Tiller](https://docs.helm.sh/using_helm/#installing-helm), or go to the project directory and execute:
+* You need Helm & Tiller installed. Follow the guide to [Install Helm & Tiller](https://docs.helm.sh/using_helm/#installing-helm), or go to the project directory and run:
 ```bash
 $ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+
 $ kubectl create -f tiller-rbac-config.yaml
 serviceaccount "tiller" created
 clusterrolebinding "tiller" created
+
 $ helm init --service-account tiller
 $HELM_HOME has been configured at $HOME/.helm.
 Tiller (the Helm server-side component) has been installed into your Kubernetes Cluster.
@@ -22,16 +24,16 @@ Tiller (the Helm server-side component) has been installed into your Kubernetes 
 1. Install Kubernetes WordPress Helm Charts to local computer
 ```bash
 $ mkdir -p k8s-wp{wp-secrets,wp-sites} && cd k8s-wp
+
 k8s-wp/ $ git clone https://github.com/stcox/k8s-wordpress.git
+
 k8s-wp/ $ cd k8s-wordpress
 ```
 
 2. Install core services: Nginx-Ingress, Kube-Lego and Redis
 From project root folder, run:
 ```bash
-$ helm install nginx-ingress
-$ helm install kube-lego
-$ helm install redis
+$ helm install nginx-ingress && helm install kube-lego && helm install redis
 ```
 
 3. From project root, create and change to folder `wp-sites/`. This is where you'll keep your site secrets and configuration values.yaml, and it's included in .gitignore.
