@@ -14,7 +14,7 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
 * Upon deploying WordPress you should install:
   * [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin to connect your site to the Redis `Deployment`
   * The cache-clearing plugin [NGINX Cache](https://wordpress.org/plugins/nginx-cache/) if you want to make sure changes appear on your website promptly.
-* Helm & Tiller Installed
+* Helm & Tiller installed
 Follow the guide to [Install Helm & Tiller](https://docs.helm.sh/using_helm/#installing-helm), or go to the project directory and execute:
 ```bash
 $ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
@@ -28,11 +28,11 @@ $HELM_HOME has been configured at $HOME/.helm.
 Tiller (the Helm server-side component) has been installed into your Kubernetes Cluster.
 ```
 
-## Project Installation
+## Installation
 
 1. Install Kubernetes WordPress Helm Charts to local computer
-  - 1a. Download/clone [Kubernetes WordPress](https://github.com/stcox/k8s-wordpress.git) project
-  - 1b. 'cd' to project root.
+  - a. Download/clone [Kubernetes WordPress](https://github.com/stcox/k8s-wordpress.git) project
+  - b. 'cd' to project root.
 
 2. Install core services: Nginx-Ingress, Kube-Lego and Redis
 ```bash
@@ -41,14 +41,15 @@ $ helm install kube-lego
 $ helm install redis
 ```
 
-4. In the project root folder, create and change to a folder called 'wp-sites'. This folder will list site folders you've created and is included in .gitignore.
+3. In the project root folder, create and change to a folder called 'wp-sites'. This folder will list site folders you've created and is included in .gitignore.
 
 ```bash
 $ mkdir wp-sites
 $ cd wp-sites
 /wp-sites $
 ```
-5. Copy Cloud SQL credentials.json file to /wp-sites
+
+4. Copy Cloud SQL credentials.json file to /wp-sites
 
 ## Usage
 
@@ -64,13 +65,13 @@ $ gcloud compute disks create --size=5GB --zone=<**ZONE**> wp-mysite-com
 # find your <**ZONE**> at https://console.cloud.google.com/compute/instanceGroups/list
 ```
 
-3. Create login files:
-  a. Create a file named wp-sites/mysite1-com/.dbuser and enter a new database **username**.
-	b. Create a file named wp-sites/mysite1-com/.dbpw and enter a new database **password**.
+3. Create database secrets:
+  - a. Create a file named wp-sites/mysite1-com/.dbuser and enter a new database **username**.
+	- b. Create a file named wp-sites/mysite1-com/.dbpw and enter a new database **password**.
 
 4. Configure namespace `mysite1-com`:
-  a. Create a `mysite1-com` folder, then `cd` to it.
-  b. Put a copy of the default wordpress/values.yaml file in /wp-sites/mysite1-com folder.
+  - a. Create a `mysite1-com` folder, then `cd` to it.
+  - b. Put a copy of the default `wordpress/values.yaml` file in `/wp-sites/mysite1-com folder`.
 ```bash
 /wp-sites $ mkdir mysite1-com && cd mysite1-com
 /wp-sites/mysite1-com $ cp ../../wordpress/values.yaml values.yaml
