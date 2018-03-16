@@ -1,4 +1,4 @@
-# WordPress-Nginx-CloudSQL Kubernetes Helm Charts
+# Using Kubernetes WordPress
 Host multiple WordPress sites on Compute Engine and Google Cloud SQL.
 Each site has its own Kubernetes Namespace with one or more Pods containing:
   - a WordPress/PHP-FPM container with Redis extensions
@@ -6,7 +6,6 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
 - a Google Cloud SQL proxy container that connects to a Cloud SQL database server
 
 ## Prerequisites
-
 * You need a Kubernetes cluster on Google Compute Engine. Follow the [official Kubernetes guide](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-container-cluster "Creating a Container Cluster").
 * You need a Google Cloud SQL Database Server. Follow the [official Google Cloud SQL guide](https://cloud.google.com/sql/docs/mysql/create-instance "Create Google Cloud SQL instance").
 * You need your Google Cloud SQL database credentials saved to your hard drive somewhere as `credentials.json`. You'll copy it to a different destination later. You should be comfortable with basic SQL statements, i.e. creating and managing DBs, users, grants.
@@ -29,7 +28,6 @@ Tiller (the Helm server-side component) has been installed into your Kubernetes 
 ```
 
 ## Installation
-
 1. Install Kubernetes WordPress Helm Charts to local computer
   - a. Download/clone [Kubernetes WordPress](https://github.com/stcox/k8s-wordpress.git) project
   - b. 'cd' to project root.
@@ -52,9 +50,7 @@ $ cd wp-sites
 4. Copy Cloud SQL credentials.json file to /wp-sites
 
 ## Usage
-
 ### Adding a website
-
 This example uses mysite1-com for a namespace and mysite1.com for a domain. This default domain will only work with HTTP. HTTPS/SSL is free with any domain you own. You can change the namespace and domain to reflect a domain you've registered. To use your own domain:
 
 1. At your domain name provider (Godaddy, Bluehost, etc.), create an A record for your domain, `mysite1.com` in this example, and point it to your ingress. [Click here to get your cluster ingress ip address](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/service?namespace=nginx-ingress)
