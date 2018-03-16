@@ -1,5 +1,5 @@
 # Kubernetes WordPress
-**Kubernetes WordPress** is a set of Kubernetes [Helm]((https://helm.sh/)) Charts that enable anyone to deploy multiple, scalable WordPress sites as LEMP Pods within a Kubernetes cluster. It's built to be secure and very fast by default.
+**Kubernetes WordPress** is a set of Kubernetes [Helm]((https://helm.sh/)) Charts that enables anyone to deploy multiple, scalable WordPress sites as LEMP Pods within a Kubernetes cluster. It's built to be secure and very fast by default.
 
 Kubernetes WordPress supports:
 - [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine/docs/quickstart "Google Kubernetes Engine") for container orchestration.
@@ -19,7 +19,7 @@ Use as your own personal web server farm! Use it as a backend to your own cloud 
 
 * **NGINX**
   * The NGINX container has multiple handy configurations for multi-site and caching, all easily deployed using `ConfigMap` objects.
-  * NGINX is built with the [`nginx-naxsi`](https://github.com/chepurko/nginx-naxsi) image, which comes with:
+  * NGINX is built with an optimized [`nginx`](https://github.com/stcox/nginx) image, which comes with:
     * NBS System's [NAXSI module](https://github.com/nbs-system/naxsi). NAXSI means [NGINX](http://nginx.org/) Anti-[XSS](https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29) & [SQL Injection](https://www.owasp.org/index.php/SQL_injection).
     * Handy configurations for NGINX and the NAXSI web application firewall are also included via `ConfigMap`s.
 

@@ -1,5 +1,2 @@
-*.dbuser
-*.dbpw
-*credentials.json
-**/sites
+**/wp-secrets
 **/wp-sites
