@@ -58,12 +58,14 @@ $ cd wp-sites
 
 ### Adding a website
 
-1. At your DNS server, create an a record to the
+This example uses mysite1-com for a namespace and mysite1.com for a domain. This default domain will only work with HTTP. HTTPS/SSL is free with any domain you own. You can change the namespace/domain to reflect a domain you've registered. To use your own domain:
+
+1. At your DNS server, create an A record for
 
 2. Create a **persistent disk** for `mysite1-com` files. Be sure to add the namespace prefix: **wp-**
 ```bash
 $ gcloud compute disks create --size=5GB --zone=<**ZONE**> wp-mysite-com
-# find your **ZONE** at https://console.cloud.google.com/compute/instanceGroups/list
+# find your <**ZONE**> at https://console.cloud.google.com/compute/instanceGroups/list
 ```
 
 3. Create login files:
