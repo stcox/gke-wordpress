@@ -1,10 +1,4 @@
 # Using Kubernetes WordPress
-Host multiple WordPress sites on Compute Engine and Google Cloud SQL.
-Each site has its own Kubernetes Namespace with one or more Pods containing:
-  - a WordPress/PHP-FPM container with Redis extensions
-  - an Nginx container with FastCGI Caching, [Pagespeed](https://www.modpagespeed.com/) extensions and [NAXSI firewall](https://github.com/nbs-system/naxsi)
-- a Google Cloud SQL proxy container that connects to a Cloud SQL database server
-
 ## Prerequisites
 * You need a Kubernetes cluster on Google Compute Engine. Follow the [official Kubernetes guide](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-container-cluster "Creating a Container Cluster").
 * You need a Google Cloud SQL Database Server. Follow the [official Google Cloud SQL guide](https://cloud.google.com/sql/docs/mysql/create-instance "Create Google Cloud SQL instance").
