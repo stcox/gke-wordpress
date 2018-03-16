@@ -9,16 +9,13 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
 
 * You need a Kubernetes cluster on Google Compute Engine. Follow the [official Kubernetes guide](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-container-cluster "Creating a Container Cluster").
 * You need a Google Cloud SQL Database Server. Follow the [official Google Cloud SQL guide](https://cloud.google.com/sql/docs/mysql/create-instance "Create Google Cloud SQL instance").
-* You need to save your Google Cloud SQL database credentials to your hard drive somewhere as `credentials.json`. You'll copy it to a different destination later. You should be comfortable with basic SQL statements, i.e. creating and managing DBs, users, grants.
-* You also need a domain and access to its DNS settings. These instructions uses the generic domain names mysite1.com as an example sites.
+* You need your Google Cloud SQL database credentials saved to your hard drive somewhere as `credentials.json`. You'll copy it to a different destination later. You should be comfortable with basic SQL statements, i.e. creating and managing DBs, users, grants.
+* You need a domain and access to its DNS settings. These instructions use the generic domain name `mysite1.com` as an example site.
 * Upon deploying WordPress you should install:
   * [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin to connect your site to the Redis `Deployment`
-  * A cache-clearing plugin such as [NGINX Cache](https://wordpress.org/plugins/nginx-cache/) if you want to make sure changes appear on your website promptly. There are also other plugins such as [NGINX Helper](https://wordpress.org/plugins/nginx-helper/) but this requires an additional NGINX module and we have not successfully tested this plugin.
-
-## Installation
-
-1. Install Helm & Tiller
-
+  * The cache-clearing plugin [NGINX Cache](https://wordpress.org/plugins/nginx-cache/) if you want to make sure changes appear on your website promptly.
+* Helm & Tiller Installed
+Follow the guide to [Install Helm & Tiller](https://docs.helm.sh/using_helm/#installing-helm), or go to the project directory and execute:
 ```bash
 $ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
 
@@ -31,11 +28,13 @@ $HELM_HOME has been configured at $HOME/.helm.
 Tiller (the Helm server-side component) has been installed into your Kubernetes Cluster.
 ```
 
+## Project Installation
+
 1. Install Kubernetes WordPress Helm Charts to local computer
   - 1a. Download/clone [Kubernetes WordPress](https://github.com/stcox/k8s-wordpress.git) project
   - 1b. 'cd' to project root.
 
-3. Install core services: Nginx-Ingress, Kube-Lego and Redis
+2. Install core services: Nginx-Ingress, Kube-Lego and Redis
 ```bash
 $ helm install nginx-ingress
 $ helm install kube-lego
