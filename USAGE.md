@@ -3,7 +3,7 @@
 * You need a Kubernetes cluster on Google Compute Engine. Follow the [official Kubernetes guide](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-container-cluster "Creating a Container Cluster").
 * You need a Google Cloud SQL Database Server. Follow the [official Google Cloud SQL guide](https://cloud.google.com/sql/docs/mysql/create-instance "Create Google Cloud SQL instance").
 * You need your Google Cloud SQL database credentials saved to your hard drive somewhere as `credentials.json`. You'll copy it to a different destination later. You should be comfortable with basic SQL statements, i.e. creating and managing DBs, users, grants.
-* You need a domain and access to its DNS settings. These instructions use the generic domain name `mysite1.com` as an example site.
+* You need a domain and access to its DNS settings. These instructions use the generic domain name `mysite.com` as an example site.
 * Upon deploying WordPress you should install:
   * [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin to connect your site to the Redis `Deployment`
   * The cache-clearing plugin [NGINX Cache](https://wordpress.org/plugins/nginx-cache/) if you want to make sure changes appear on your website promptly.
@@ -32,7 +32,9 @@ $ helm install kube-lego
 $ helm install redis
 ```
 
-3. In the project root folder, create and change to a folder called 'wp-sites'. This folder will list site folders you've created and is included in .gitignore.
+3.
+
+In the project root folder, create and change to a folder called 'wp-sites'. This folder will list site folders you've created and is included in .gitignore.
 
 ```bash
 $ mkdir wp-sites
@@ -44,33 +46,33 @@ $ cd wp-sites
 
 ## Usage
 ### Adding a website
-This example uses mysite1-com for a namespace and mysite1.com for a domain. This default domain will only work with HTTP. HTTPS/SSL is free with any domain you own. You can change the namespace and domain to reflect a domain you've registered. To use your own domain:
+This example uses mysite-com for a namespace and mysite.com for a domain. This default domain will only work with HTTP. HTTPS/SSL/HTTP2 is included with any domain you actually own and is enabled by setting `tls` to `true` in the site's `values.yaml` file. You can change the namespace and domain to reflect a domain you've registered.
 
-1. At your domain name provider (Godaddy, Bluehost, etc.), create an A record for your domain, `mysite1.com` in this example, and point it to your ingress. [Click here to get your cluster ingress ip address](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/service?namespace=nginx-ingress)
+1. At your domain name provider (Godaddy, Bluehost, etc.), create an A record for your domain, `mysite.com` in this example, and point it to your ingress. [Click here to get your cluster ingress ip address](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/service?namespace=nginx-ingress)
 
-2. Create a **persistent disk** for `mysite1-com` files. Be sure to add the namespace prefix: **wp-**
+2. Create a **persistent disk** for `mysite-com` files. Be sure to add the namespace prefix: **wp-**
 ```bash
 $ gcloud compute disks create --size=5GB --zone=<**ZONE**> wp-mysite-com
 # find your <**ZONE**> at https://console.cloud.google.com/compute/instanceGroups/list
 ```
 
 3. Create database secrets:
-  - a. Create a file named wp-sites/mysite1-com/.dbuser and enter a new database **username**.
-	- b. Create a file named wp-sites/mysite1-com/.dbpw and enter a new database **password**.
+  - a. Create a file named wp-sites/mysite-com/.dbuser and enter a new database **username**.
+	- b. Create a file named wp-sites/mysite-com/.dbpw and enter a new database **password**.
 
-4. Configure namespace `mysite1-com`:
-  - a. Create a `mysite1-com` folder, then `cd` to it.
-  - b. Put a copy of the default `wordpress/values.yaml` file in `/wp-sites/mysite1-com folder`.
+4. Configure namespace `mysite-com`:
+  - a. Create a `mysite-com` folder, then `cd` to it.
+  - b. Put a copy of the default `wordpress/values.yaml` file in `/wp-sites/mysite-com folder`.
 ```bash
-/wp-sites $ mkdir mysite1-com && cd mysite1-com
-/wp-sites/mysite1-com $ cp ../../wordpress/values.yaml values.yaml
+/wp-sites $ mkdir mysite-com && cd mysite-com
+/wp-sites/mysite-com $ cp ../../wordpress/values.yaml values.yaml
 ```
 
-5. With your favorite editor, edit the `/wp-sites/mysite1-com/values.yaml` file and change the `name` value to `mysite1-com` and the `domain` value to `mysite1.com`, and save your changes.
+5. With your favorite editor, edit the `/wp-sites/mysite-com/values.yaml` file and change the `name` value to `mysite-com` and the `domain` value to `mysite.com`, and save your changes.
 
-6. Install WordPress helm chart with `mysite1-com` values.
+6. Install WordPress helm chart with `mysite-com` values.
 ```bash
-/wp-sites/mysite1-com $ helm install -f values.yaml ../../wordpress
+/wp-sites/mysite-com $ helm install -f values.yaml ../../wordpress
 ```
 
 ## Acknowledgements
