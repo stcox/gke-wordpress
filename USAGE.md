@@ -13,8 +13,7 @@ Each site has its own Kubernetes Namespace with one or more Pods containing:
 * Upon deploying WordPress you should install:
   * [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin to connect your site to the Redis `Deployment`
   * The cache-clearing plugin [NGINX Cache](https://wordpress.org/plugins/nginx-cache/) if you want to make sure changes appear on your website promptly.
-* Helm & Tiller installed
-Follow the guide to [Install Helm & Tiller](https://docs.helm.sh/using_helm/#installing-helm), or go to the project directory and execute:
+* You need Helm & Tiller installed. Follow the guide to [Install Helm & Tiller](https://docs.helm.sh/using_helm/#installing-helm), or go to the project directory and execute:
 ```bash
 $ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
 
