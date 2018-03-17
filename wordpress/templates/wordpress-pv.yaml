@@ -9,7 +9,7 @@ spec:
     storage: {{ .Values.storage }}
   accessModes:
     - ReadWriteOnce
-  storageClassName: slow
+  storageClassName: standard
   gcePersistentDisk:
     pdName: {{ .Values.name }}
     fsType: ext4
