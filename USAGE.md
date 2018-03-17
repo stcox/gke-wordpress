@@ -25,7 +25,7 @@ k8s-wp/k8s-wordpress/ $ helm init --service-account tiller
 
 3. Install core services: Nginx-Ingress, Kube-Lego and Redis
 ```bash
-k8s-wp/k8s-wordpress/ $ helm install nginx-ingress && helm install kube-lego && helm install redis
+k8s-wp/k8s-wordpress/ $ helm install nginx-ingress && helm install kube-lego && helm install stable/redis-ha
 ```
 
 ## Usage
