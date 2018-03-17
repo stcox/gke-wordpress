@@ -1,17 +1,22 @@
 # Basic Site Info
-name: namespace  # Kubernetes Namespace (A-z,0-9,'-'),
-domain: domain   # Domain, e.g., mysite.com, dev.mysite2.net, etc.
-storage: 5Gi     # Storage Size
-tls: false       # Set to true for HTTPS/TLS/SSL
-replicas: 1
-maxSurge: 0
-maxUnavailable: 1
+name: name        # Kubernetes Namespace (A-z,0-9,'-')
+                  # gets namespace prefix 'wp-' automatically, i.e., 'wp-mysite-com'
+domain: domain    # Domain, e.g., mysite.com, mysite2.com, dev.anysite.com, etc.
+storage: 5Gi      # Storage Size
+tls: false        # Set to 'true' for HTTPS/TLS/SSL
+replicas: 1       #
+maxSurge: 0       #
+maxUnavailable: 1 # 
 
+enableResourceLimits: false   # If true, adjust below
+#requestsMemory: 256Mi
+#requestsCpu: 250m
+#limitsMemory: 512Mi
+#limitsCpu: 500m
+
+dbUser: proxyuser
+dbPass: proxyuserpassword
 # Cloud SQL Instance Name
-instanceConnectionName: myproject:myregion:mydb # https://console.cloud.google.com/sql/instances.
+dbConn: project:region:instance  # from https://console.cloud.google.com/sql/instances
 
-enableResourceLimits: false  # If true, adjust below
-requestsMemory: 256Mi
-requestsCpu: 250m
-limitsMemory: 512Mi
-limitsCpu: 500m
+dbCred: '{}'
