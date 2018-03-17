@@ -30,35 +30,33 @@ k8s-wp/k8s-wordpress/ $ helm install nginx-ingress && helm install kube-lego && 
 
 ## Usage
 ### Adding a website
-This example uses mysite-com for a namespace and mysite.com for a domain. This default domain will only work with HTTP. HTTPS/SSL/HTTP2 is included with any domain you actually own and is enabled by setting `tls: true` in the site's `values.yaml` file. You can change the namespace and domain to reflect a domain you've registered.
+The example uses mysite-com for file location and mysite.com for a domain. All WordPress namespaces are automatically prefixed with `wp-` so they are easier to find in the kubernetes dashboard; consequently, the example namespace will appear as `wp-mysite-com`. The example domain only works with HTTP via your local hosts file, since you don't own the mysite.com domain. You are free to substitute an unused custom domain you have already registered, or have control over.
 
-1. Configure namespace `mysite-com`:
+Free LetsEncrypt TLS/SSL/HTTPS/HTTP2 certificates are available for any domains you control. LetsEncrypt is enabled by setting `tls: true` in the site's configuration file.
+
+1. Configure your site, `mysite-com`:
 ```bash
-k8s-wp/wp-sites/ $ mkdir mysite-com && cd mysite-com
-k8s-wp/wp-sites/mysite-com/ $ cp ../../k8s-wordpress/wordpress/values.yaml values.yaml
+k8s-wp/k8s-wordpress/ $ cd ../wp-sites
+k8s-wp/wp-sites/ $ cp ../k8s-wordpress/wordpress/values.yaml mysite-com.yaml
+k8s-wp/wp-sites/mysite-com/ $ nano mysite-com.yaml
 ```
 
-2. With your favorite editor, edit the `/wp-sites/mysite-com/values.yaml` file and change the `name` value to `mysite-com` and the `domain` value to `mysite.com`, and save your changes.
-```bash
-k8s-wp/wp-sites/mysite-com/ $ nano values.yaml
-```
-
-3. Create a **persistent disk** for `mysite-com` files. Be sure to add the prefix: **wp-** to your namespace for this command. The size should match the size you specified in your `values.yaml` file.
+2. Create a **persistent disk** for `wp-mysite-com`. Be sure to add the prefix: **wp-** to your namespace for this command.
 ```bash
 k8s-wp/wp-sites/mysite-com/ $ gcloud compute disks create --size=5GB --zone=<**ZONE**> wp-mysite-com
 # find your <**ZONE**> at https://console.cloud.google.com/compute/instanceGroups/list
 ```
 
-4. Create database secrets:
+3. Create database secrets:
   - a. Create a file named wp-sites/mysite-com/.dbuser and enter a new database **username**.
 	- b. Create a file named wp-sites/mysite-com/.dbpass and enter a new database **password**.
-	* Make sure there is no extra whitespace in these files.
+	* Be sure to trim any extra whitespace from these files.
 
-5. At your domain name provider (Godaddy, Bluehost, etc.), create an A record for your domain, `mysite.com` in this example, and point it to your ingress ip address. [Click here to get your cluster's ingress ip address](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/service?namespace=nginx-ingress)
+4. At your domain name provider (Godaddy, Bluehost, etc.), create an A record for your domain, `mysite.com` in this example, and point it to your ingress ip address. [Click here for your cluster's ingress ip address](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/service?namespace=nginx-ingress)
 
-6. Install WordPress helm chart with `mysite-com` values.
+5. Install WordPress helm chart with `mysite-com` values.
 ```bash
-k8s-wp/wp-sites/mysite-com $ helm install -f values.yaml ../../k8s-wordpress/wordpress
+k8s-wp/wp-sites/ $ helm install -f mysite-com.yaml ../k8s-wordpress/wordpress
 ```
 
 ## Acknowledgements
