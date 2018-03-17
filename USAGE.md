@@ -25,14 +25,14 @@ k8s-wp/k8s-wordpress/ $ helm init --service-account tiller
 
 3. Install core services: Nginx-Ingress, Kube-Lego and Redis
 ```bash
-k8s-wp/k8s-wordpress/ $ helm install nginx-ingress && helm install kube-lego && helm install redis
+k8s-wp/k8s-wordpress/ $ helm install nginx-ingress && helm install kube-lego --set legoEmail=`myemail@mysite.com` && helm install redis
 ```
 
 ## Usage
 ### Adding websites
-The example uses `mysite-com` for the example site's file location name and `mysite.com` for the example site's domain. All WordPress site names are automatically prefixed with `wp-` to create the site's namespace, so they are easier to find, and group, in the kubernetes dashboard; consequently, the example namespace will appear as `wp-mysite-com` in kubernetes.
+The example uses `mysite-com`, for the site's namespace, and `mysite.com` for the domain. All WordPress namespaces are prefixed with `wp-` to create the site's namespace, so they are easier to find; consequently, the example namespace will appear as `wp-mysite-com` in kubernetes.
 
-The example domain only works with HTTP via your local hosts file, since you don't own the mysite.com domain. You are free to substitute an unused custom domain you have already registered, or have control over.
+The example domain, `mysite.com` only works with HTTP via a local hosts file. You should substitute your own domain.
 
 Free LetsEncrypt TLS/SSL/HTTPS/HTTP2 certificates are available for any domains you control. LetsEncrypt is enabled by setting `tls: true` in the site's configuration file.
 
