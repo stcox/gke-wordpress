@@ -43,9 +43,9 @@ k8s-wp/wp-sites/ $ cp ../k8s-wordpress/wordpress/values.yaml mysite-com.yaml
 k8s-wp/wp-sites/ $ nano mysite-com.yaml
 ```
 
-2. Create a **persistent disk** for `wp-mysite-com`. Be sure to add the prefix: **wp-** to your namespace for this command.
+2. Create a **persistent disk** for `mysite-com`.
 ```bash
-k8s-wp/wp-sites/ $ gcloud compute disks create --size=5GB --zone=<**ZONE**> wp-mysite-com
+k8s-wp/wp-sites/ $ gcloud compute disks create --size=5GB --zone=<**ZONE**> mysite-com
 # find your <**ZONE**> at https://console.cloud.google.com/compute/instanceGroups/list
 ```
 

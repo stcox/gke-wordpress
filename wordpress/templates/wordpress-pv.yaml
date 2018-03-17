@@ -11,5 +11,5 @@ spec:
     - ReadWriteOnce
   storageClassName: slow
   gcePersistentDisk:
-    pdName: wp-{{ .Values.name }}
+    pdName: {{ .Values.name }}
     fsType: ext4
