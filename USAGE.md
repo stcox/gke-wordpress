@@ -46,7 +46,7 @@ k8s-wp/wp-sites/ $ gcloud compute disks create --size=5GB --zone=<**ZONE**> mysi
 # find your <**ZONE**> at https://console.cloud.google.com/compute/instanceGroups/list
 ```
 
-3. Configure your site, `mysite-com`. **Name, domain, dbUser, dbPass, dbConn, and dbCred MUST be changed**:
+3. **Configure your site**, `mysite-com`:
 ```bash
 k8s-wp/k8s-wordpress/ $ cd ../wp-sites
 k8s-wp/wp-sites/ $ cp ../k8s-wordpress/wordpress/values.yaml mysite-com.yaml
