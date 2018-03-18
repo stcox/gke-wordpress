@@ -23,9 +23,11 @@ k8s-wp/k8s-wordpress/ $ kubectl create -f tiller-rbac-config.yaml
 k8s-wp/k8s-wordpress/ $ helm init --service-account tiller
 ```
 
-3. Install core services: Nginx-Ingress, Kube-Lego and Redis
+3. Install core services: Nginx-Ingress, Kube-Lego and Redis. Use your own email address for `kube-lego`.
 ```bash
-k8s-wp/k8s-wordpress/ $ helm install nginx-ingress && helm install kube-lego --set legoEmail=`myemail@mysite.com` && helm install redis
+k8s-wp/k8s-wordpress/ $ helm install nginx-ingress
+k8s-wp/k8s-wordpress/ $ helm install kube-lego --set legoEmail=`myemail@mysite.com`
+k8s-wp/k8s-wordpress/ $ helm install redis
 ```
 
 ## Usage
