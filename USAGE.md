@@ -40,9 +40,9 @@ Free LetsEncrypt TLS/SSL/HTTPS/HTTP2 certificates are available for any domains 
 
 1. At your domain name provider (Godaddy, Bluehost, etc.), **create an A record** for your domain, `mysite.com` in this example, and point it to your ingress ip address. [Get your cluster's ingress ip address](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/service?namespace=nginx-ingress)
 
-2. Create a **persistent disk** for `mysite-com`.
+2. Create a **persistent disk** for `mysite-com` from any folder.
 ```bash
-k8s-wp/wp-sites/ $ gcloud compute disks create --size=5GB --zone=<**ZONE**> mysite-com
+gcloud compute disks create --size=5GB --zone=<**ZONE**> mysite-com
 # find your <**ZONE**> at https://console.cloud.google.com/compute/instanceGroups/list
 ```
 
