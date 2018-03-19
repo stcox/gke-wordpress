@@ -32,28 +32,28 @@ k8s-wp/k8s-wordpress/ $ helm install redis
 
 ## Usage
 ### Adding websites
-The example uses `mysite-com`, for the site's namespace, and `mysite.com` for the domain. All WordPress namespaces are prefixed with `wp-` to create the site's namespace, so they are easier to find; consequently, the example namespace will appear as `wp-mysite-com` in kubernetes.
+The example uses `mysite-com`, for the site's namespace, and `mysite.com` for the domain. **All WordPress namespaces are automatically prefixed with **`wp-`** to create the site's namespace, so they are easier to find; consequently, the example namespace will appear as **`wp-mysite-com`** in kubernetes.
 
 The example domain, `mysite.com` only works with HTTP via a local hosts file. You should substitute your own domain.
 
 Free LetsEncrypt TLS/SSL/HTTPS/HTTP2 certificates are available for any domains you control. LetsEncrypt is enabled by setting `tls: true` in the site's configuration file.
 
-1. At your domain name provider (Godaddy, Bluehost, etc.), **create an A record** for your domain, `mysite.com` in this example, and point it to your ingress ip address. [Get your cluster's ingress ip address](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/service?namespace=nginx-ingress)
+1. **Create an A record** for your domain, `mysite.com` at your domain name provider (Godaddy, Bluehost, etc.), and point it to your Ingress IP address. [Get your cluster's Ingress IP Address](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/service?namespace=nginx-ingress)
 
-2. Create a **persistent disk** for `mysite-com` from any folder.
+2. **Create a persistent disk (PD)** for `mysite-com` from any folder.
 ```bash
-gcloud compute disks create --size=5GB --zone=<**ZONE**> mysite-com
+$ gcloud compute disks create --size=5GB --zone=<**ZONE**> mysite-com
 # find your <**ZONE**> at https://console.cloud.google.com/compute/instanceGroups/list
 ```
 
-3. **Configure your site**, `mysite-com`:
+3. **Configure site values** for `mysite.com`.
 ```bash
 k8s-wp/k8s-wordpress/ $ cd ../wp-sites
 k8s-wp/wp-sites/ $ cp ../k8s-wordpress/wordpress/values.yaml mysite-com.yaml
 k8s-wp/wp-sites/ $ nano mysite-com.yaml
 ```
 
-4. **Install WordPress helm chart** with `mysite-com` values.
+4. **Install WordPress helm chart** for `mysite.com`.
 ```bash
 k8s-wp/wp-sites/ $ helm install -f mysite-com.yaml ../k8s-wordpress/wordpress
 ```
