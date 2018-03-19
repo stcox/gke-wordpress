@@ -23,4 +23,4 @@ dbPass: proxyuserpassword
 # Cloud SQL Instance Name
 dbConn: project:region:instance  # from https://console.cloud.google.com/sql/instances
 
-dbCred: '{}' #json credentials - put
+dbCred: '{}' # sql json credentials
