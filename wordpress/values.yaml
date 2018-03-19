@@ -1,4 +1,4 @@
-# Basic Site Info
+# Default WordPress Site Info
 name: name        # Kubernetes Namespace (A-z,0-9,'-')
                   # gets namespace prefix 'wp-' automatically, i.e., 'wp-mysite-com'
 domain: domain    # Domain, e.g., mysite.com, mysite2.com, dev.anysite.com, etc.
