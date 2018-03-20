@@ -41,6 +41,20 @@ spec:
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         env:
+        - name: WP_CACHE_KEY_SALT
+          value: {{ .Values.name }}
+        - name: WP_REDIS_CLIENT
+          value: "pecl"
+        - name: WP_REDIS_SCHEME
+          value: "tcp"
+        - name: WP_REDIS_HOST
+          value: {{ .Values.wpRedisHost }}
+        - name: WP_REDIS_PORT
+          value: {{ .Values.wpRedisPort | quote }}
+        - name: WP_MEMORY_LIMIT
+          value: {{ .Values.wpMemoryLimit }}
+        - name: WP_MAX_MEMORY_LIMIT
+          value: {{ .Values.wpMaxMemoryLimit }}
         - name: WORDPRESS_DB_HOST
           value: 127.0.0.1:3306
         - name: WORDPRESS_DB_NAME
@@ -55,7 +69,7 @@ spec:
             secretKeyRef:
               name: cloudsql-db-credentials
               key: password
-        {{- if eq .Values.enableResourceLimits true}}
+        {{- if eq .Values.enableResourceLimits true }}
         resources:
           requests:
             memory: {{ .Values.requestsMemory | quote }}
@@ -84,7 +98,7 @@ spec:
           mountPath: /etc/ssl/certs
         - name: cloudsql
           mountPath: /cloudsql
-      - image: stcox/nginx:{{ .Values.wpImageTag }}
+      - image: stcox/nginx:{{ .Values.ngImageTag }}
         name: wp-nginx
         ports:
         - containerPort: 80

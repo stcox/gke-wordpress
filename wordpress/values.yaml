@@ -9,8 +9,14 @@ replicas: 1       #
 maxSurge: 0       #
 maxUnavailable: 1 #
 
-wpImageTag: 1.0
-ngImageTag: 1.0
+wpRedisHost: 'redis.redis'
+wpRedisPort: '6379'
+
+wpMemoryLimit: '128M'
+wpMaxMemoryLimit: '256M'
+
+wpImageTag: "1.0"
+ngImageTag: "1.0"
 
 enableResourceLimits: false   # If true, adjust below
 #requestsMemory: 256Mi
