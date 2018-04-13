@@ -12,22 +12,21 @@
 1. Install **Kubernetes WordPress** project locally
 ```bash
 $ mkdir -p k8s-wp{wp-sites} && cd k8s-wp
-k8s-wp/ $ git clone https://github.com/stcox/k8s-wordpress.git
+$ git clone https://github.com/stcox/k8s-wordpress.git && cd k8s-wordpress
 ```
 
 2. Install **Helm & Tiller**
 ```bash
-k8s-wp/ $ cd k8s-wordpress
-k8s-wp/k8s-wordpress/ $ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
-k8s-wp/k8s-wordpress/ $ kubectl create -f tiller-rbac-config.yaml
-k8s-wp/k8s-wordpress/ $ helm init --service-account tiller
+$ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+$ kubectl create -f tiller-rbac-config.yaml
+$ helm init --service-account tiller
 ```
 
-3. Install core services: **Nginx-Ingress, Kube-Lego and Redis**. Use your own email address for `kube-lego`.
+3. Install core cluster services: **Nginx-Ingress, Kube-Lego and Redis**. Replace the kube-lego `legoEmail=` value with your own email address.
 ```bash
-k8s-wp/k8s-wordpress/ $ helm install nginx-ingress
-k8s-wp/k8s-wordpress/ $ helm install kube-lego --set legoEmail=myemail@mysite.com
-k8s-wp/k8s-wordpress/ $ helm install redis
+$ helm install nginx-ingress
+$ helm install kube-lego --set legoEmail=myemail@mysite.com
+$ helm install redis && cd ..
 ```
 
 ## Usage
@@ -40,22 +39,15 @@ Free LetsEncrypt TLS/SSL/HTTPS/HTTP2 certificates are available for any domains 
 
 1. **Create an A record** for your domain, `mysite.com` at your domain name provider (Godaddy, Bluehost, etc.), and point it to your Ingress IP address. [Get your cluster's Ingress IP Address](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/service?namespace=nginx-ingress)
 
-2. **Create a persistent disk (PD)** for `mysite-com` from any folder.
+2. **Configure site values** for `mysite.com`.
 ```bash
-$ gcloud compute disks create --size=5GB --zone=<**ZONE**> mysite-com
-# find your <**ZONE**> at https://console.cloud.google.com/compute/instanceGroups/list
+$ cp ./k8s-wordpress/wordpress/values.yaml ./wp-sites/mysite-com.yaml
+$ nano ./wp-sites/mysite-com.yaml
 ```
 
-3. **Configure site values** for `mysite.com`.
+3. **Install WordPress** with `mysite.com` values.
 ```bash
-k8s-wp/k8s-wordpress/ $ cd ../wp-sites
-k8s-wp/wp-sites/ $ cp ../k8s-wordpress/wordpress/values.yaml mysite-com.yaml
-k8s-wp/wp-sites/ $ nano mysite-com.yaml
-```
-
-4. **Install WordPress helm chart** for `mysite.com`.
-```bash
-k8s-wp/wp-sites/ $ helm install -f mysite-com.yaml ../k8s-wordpress/wordpress
+$ helm install -f ./wp-sites/mysite-com.yaml ./k8s-wordpress/wordpress
 ```
 
 ## Acknowledgements

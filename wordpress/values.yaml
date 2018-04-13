@@ -1,8 +1,7 @@
 # Default WordPress Site Info
 name: name        # Kubernetes Namespace (A-z,0-9,'-')
-                  # gets namespace prefix 'wp-' automatically, i.e., 'wp-mysite-com'
 domain: domain    # Domain, e.g., mysite.com, mysite2.com, dev.anysite.com, etc.
-storage: 5Gi      # Storage Size
+storage: 10Gi     # Storage Size
 tls: false        # Set to 'true' for HTTPS/TLS/SSL
 
 replicas: 1       #
@@ -12,10 +11,13 @@ maxUnavailable: 1 #
 wpRedisHost: 'redis.redis'
 wpRedisPort: '6379'
 
-wpMemoryLimit: '128M'
-wpMaxMemoryLimit: '256M'
+wpMemoryLimit: '64M'
+wpMaxMemoryLimit: '128M'
 
-wpImageTag: "1.0"
+wpImage: "stcox/wordpress"
+wpImageTag: "1.2"
+
+ngImage: "stcox/nginx"
 ngImageTag: "1.0"
 
 enableResourceLimits: false   # If true, adjust below
@@ -26,7 +28,7 @@ enableResourceLimits: false   # If true, adjust below
 
 dbUser: proxyuser
 dbPass: proxyuserpassword
+
 # Cloud SQL Instance Name
 dbConn: project:region:instance  # from https://console.cloud.google.com/sql/instances
-
 dbCred: '{}' # sql json credentials
