@@ -34,7 +34,7 @@ spec:
         track: stable
     spec:
       containers:
-      - image: stcox/wordpress:{{ .Values.wpImageTag }}
+      - image: {{ .Values.wpImage }}:{{ .Values.wpImageTag }}
         imagePullPolicy: IfNotPresent
         name: wp
         resources: {}
@@ -98,7 +98,7 @@ spec:
           mountPath: /etc/ssl/certs
         - name: cloudsql
           mountPath: /cloudsql
-      - image: stcox/nginx:{{ .Values.ngImageTag }}
+      - image: {{ .Values.ngImage }}:{{ .Values.ngImageTag }}
         name: wp-nginx
         ports:
         - containerPort: 80
