@@ -19,7 +19,6 @@ $ git clone https://github.com/stcox/k8s-wordpress.git && cd k8s-wordpress
 ```bash
 $ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
 $ kubectl create -f tiller-rbac-config.yaml
-$ kubectl create -f storageclass.yaml
 $ helm init --service-account tiller
 ```
 
