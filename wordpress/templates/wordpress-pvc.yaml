@@ -11,7 +11,7 @@ spec:
   resources:
     requests:
       storage: {{ .Values.storage }}
-  storageClassName: standard
+  storageClassName: slow
   selector:
     matchLabels:
       app: wp-{{ .Values.name }}
