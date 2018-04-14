@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: php
+  name: php-fpm
   namespace: wp-{{ .Values.name }}
   labels:
     app: wp-{{ .Values.name }}
