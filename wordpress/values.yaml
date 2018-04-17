@@ -2,11 +2,11 @@
 name: name        # Kubernetes Namespace (A-z,0-9,'-')
 domain: domain    # Domain, e.g., mysite.com, mysite2.com, dev.anysite.com, etc.
 storage: 10Gi     # Storage Size
-tls: false        # Set to 'true' for HTTPS/TLS/SSL
+tls: true         # Set to 'true' for HTTPS/TLS/SSL
 
-replicas: 1       #
-maxSurge: 0       #
-maxUnavailable: 1 #
+replicas: 1
+maxSurge: 1
+maxUnavailable: 0
 
 wpRedisHost: 'redis.redis'
 wpRedisPort: '6379'
