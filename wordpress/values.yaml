@@ -14,11 +14,11 @@ wpRedisPort: '6379'
 wpMemoryLimit: '64M'
 wpMaxMemoryLimit: '128M'
 
-wpImage: "stcox/wordpress"
+wpImage: "stcox/wordpress-dev"
 wpImageTag: "1.2"
 
 ngImage: "stcox/nginx"
-ngImageTag: "1.0"
+ngImageTag: "1.2"
 
 enableResourceLimits: false   # If true, adjust below
 #requestsMemory: 256Mi
