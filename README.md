@@ -1,7 +1,7 @@
 # Kubernetes WordPress
 **Kubernetes WordPress** is a set of [Kubernetes](https://kubernetes.io/) [Helm Charts](https://helm.sh/) for deploying multiple, scalable WordPress sites within a [Kubernetes Cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview). It's built to be secure and very fast by default.
 
-Kubernetes WordPress supports:
+Kubernetes WordPress supports/requires:
 - [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine "Google Kubernetes Engine") container management.
 - [Google Compute Engine](https://cloud.google.com/compute "Google Compute Engine") for application servers and file storage. Default config includes single-replica persistent disks. Multi-replica, high-availability block-storage can be added by changing wordpress-deployment.yaml and specifying Gluster volume mounts.
 - [Google Cloud SQL](https://cloud.google.com/sql/ "Google Cloud SQL") high-availability database.
