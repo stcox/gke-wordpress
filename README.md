@@ -1,13 +1,13 @@
-# Kubernetes WordPress
-**Kubernetes WordPress** is a set of [Kubernetes](https://kubernetes.io/) [Helm Charts](https://helm.sh/) for deploying multiple, scalable WordPress sites within a [Kubernetes Cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview). It's built to be secure and very fast by default.
+# GKE WordPress
+**GKE WordPress** is a set of [Kubernetes](https://kubernetes.io/) [Helm Charts](https://helm.sh/) for deploying multiple WordPress sites within a [Kubernetes Engine Cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview). It's built to be secure and very fast by default with FastCGI page caching and Redis object caching (enabled via plugins), plus the Nginx pagespeed module and NAXSI firewall.
 
-Kubernetes WordPress supports/requires:
+GKE WordPress supports/requires:
 - [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine "Google Kubernetes Engine") container management.
 - [Google Compute Engine](https://cloud.google.com/compute "Google Compute Engine") for application servers and file storage. Default config includes single-replica persistent disks. Multi-replica, high-availability block-storage can be added by changing wordpress-deployment.yaml and specifying Gluster volume mounts.
 - [Google Cloud SQL](https://cloud.google.com/sql/ "Google Cloud SQL") high-availability database.
-- [Helm, the Kubernetes Package Manager](https://helm.sh/), merges charts and configs to create releases.
+- [Helm, the Kubernetes Package Manager](https://helm.sh/), merges charts and values to create releases.
 
-Other providers haven't been tested (things like `PersistentVolume` and `Ingress` depend on your cloud provider).
+Other Kubernetes Masters/Providers haven't been tested. Things like `PersistentVolume` and `Ingress` depend on your cloud provider.
 
 Use as your own personal web server farm! Use it as a backend to your own cloud hosting company! We're moving towards extra customization in terms of web server and security hardening measures.
 
@@ -18,17 +18,16 @@ Use as your own personal web server farm! Use it as a backend to your own cloud 
   * `ConfigMap`s are used to inject various `php.ini` settings for PHP 7.2.
 
 * **NGINX**
-  * Each [NGINX web server image](https://github.com/stcox/nginx) is based on the [`Debian`](https://hub.docker.com/_/debian/) docker image, and comes with:
-    * NBS System's [NAXSI module](https://github.com/nbs-system/naxsi). NAXSI means [NGINX](http://nginx.org/) Anti-[XSS](https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29) & [SQL Injection](https://www.owasp.org/index.php/SQL_injection).
-    * Handy configurations for NGINX and the NAXSI web application firewall are also included via `ConfigMap`s.
-	* The NGINX container has multiple handy configurations for multi-site and caching, all easily deployed using `ConfigMap` objects.
+Each [NGINX web server image](https://github.com/stcox/nginx) is based on the [`Debian`](https://hub.docker.com/_/debian/) docker image, and comes with:
+  * NBS System's [NAXSI module](https://github.com/nbs-system/naxsi). NAXSI means [NGINX](http://nginx.org/) Anti-[XSS](https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29) & [SQL Injection](https://www.owasp.org/index.php/SQL_injection).
+  * Handy configurations for NGINX and the NAXSI web application firewall are also included via `ConfigMap`s.
+  * The NGINX container has multiple handy configurations for multi-site and caching, all easily deployed using `ConfigMap` objects.
 
 * **Cloud SQL**
-  * The WordPress pods all interface with one [Google Cloud SQL](https://cloud.google.com/sql/) database server. This is so anyone can start off with a full-fledged web farm and bring up any number of websites using a single Cloud SQL server instance and a separate database for each site.
+The WordPress pods all interface with one [Google Cloud SQL](https://cloud.google.com/sql/) database server. This is so anyone can start off with a full-fledged web farm and bring up any number of websites using a single Cloud SQL server instance and a separate database for each site.
 
 * **Redis**
-  * To reduce hits to the DB we build the WP image with the `redis` PHP extension and include a Redis `Deployment`.
-  * WP must be configured to use Redis upon initializing a new WP site by installing and configuring the WP [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin.
+To reduce hits to the DB we build the WP image with the `redis` PHP extension and include a Redis `Deployment`. WP must be configured to use Redis upon initializing a new WP site by installing and configuring the WP [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin.
 
 * **Ingress/Kube Lego**
   * Websites are reached externally via an `nginx` `Ingress` controller. See Kubernetes documentation regarding `Ingress` in the [official docs](https://kubernetes.io/docs/user-guide/ingress/ "Ingress Resources") and on [GitHub](https://github.com/kubernetes/ingress/blob/master/controllers/nginx/README.md "NGINX Ingress Controller").
