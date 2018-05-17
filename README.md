@@ -33,15 +33,9 @@ To reduce hits to the DB we build the WP image with the `redis` PHP extension an
   * Websites are reached externally via an `nginx` `Ingress` controller. See Kubernetes documentation regarding `Ingress` in the [official docs](https://kubernetes.io/docs/user-guide/ingress/ "Ingress Resources") and on [GitHub](https://github.com/kubernetes/ingress/blob/master/controllers/nginx/README.md "NGINX Ingress Controller").
   * All TLS is terminated at `Ingress` via free Let's Encrypt certificates good for all domains on your cluster. Better yet, certificate issuance is handled automatically with the awesome [Kube Lego](https://github.com/jetstack/kube-lego "Kube Lego").
 
-* See [**Installation and Usage**](USAGE.md) for instructions on getting up and running.
-
-![Kubernetes WordPress Architecture](k8s-wordpress.png "Kubernetes WordPress Architecture")
-
 ## Installation and Usage
+See [**Installation and Usage**](USAGE.md) for instructions on getting up and running.
 Visit [USAGE.md](USAGE.md "Installation & Usage").
-
-## TODO
-- Upgrade kube-lego to cert-manager
 
 ## Acknowledgements
 This project was inspired by and based on [daxio/k8s-lemp](https://github.com/daxio/k8s-lemp "Kubernetes LEMP Stack") and builds on it with the various other official Docker images and Kubernetes applications mentioned previously.
