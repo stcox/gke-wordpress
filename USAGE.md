@@ -1,4 +1,4 @@
-# Using Kubernetes WordPress
+# Using GKE WordPress
 ## Prerequisites
 * You need a Kubernetes cluster on Google Compute Engine. Follow the [official Kubernetes guide](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-container-cluster "Creating a Container Cluster").
 * You need a Google Cloud SQL Database Server. Follow the [Creating a Google Cloud SQL guide](https://cloud.google.com/sql/docs/mysql/create-instance "Create Google Cloud SQL instance") and [Connecting Cloud SQL to Kubernetes Engine](https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine) guide.
@@ -11,8 +11,8 @@
 ## Installation
 1. Install **Kubernetes WordPress** project locally
 ```bash
-$ mkdir -p k8s-wp{wp-sites} && cd k8s-wp
-$ git clone https://github.com/stcox/k8s-wordpress.git && cd k8s-wordpress
+$ mkdir -p gke-wp{wp-sites} && cd gke-wp
+$ git clone https://github.com/stcox/gke-wordpress.git && cd gke-wordpress
 ```
 
 2. Install **Helm & Tiller**
@@ -41,13 +41,13 @@ Free LetsEncrypt TLS/SSL/HTTPS/HTTP2 certificates are available for any domains 
 
 2. **Configure site values** for `mysite.com`.
 ```bash
-$ cp ./k8s-wordpress/wordpress/values.yaml ./wp-sites/mysite-com.yaml
+$ cp ./gke-wordpress/wordpress/values.yaml ./wp-sites/mysite-com.yaml
 $ nano ./wp-sites/mysite-com.yaml
 ```
 
 3. **Install WordPress** with `mysite.com` values.
 ```bash
-$ helm install -f ./wp-sites/mysite-com.yaml ./k8s-wordpress/wordpress
+$ helm install -f ./wp-sites/mysite-com.yaml ./gke-wordpress/wordpress
 ```
 
 ## Acknowledgements
