@@ -1,13 +1,13 @@
 # GKE WordPress
-**GKE WordPress** is a set of [Kubernetes](https://kubernetes.io/) [Helm Charts](https://helm.sh/) for deploying multiple WordPress sites within a [Kubernetes Engine Cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview). It's built to be secure and very fast by default with FastCGI page caching and Redis object caching (enabled via plugins), plus the Nginx pagespeed module and NAXSI firewall.
+GKE WordPress lets you deploy multiple WordPress sites within a [Google Kubernetes Engine (GKE) cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview) using [helm charts](https://helm.sh/). Built to be secure and very fast by default with FastCGI page caching, Redis object caching (enabled via plugins), Nginx pagespeed module, and NAXSI firewall, it connects to a Google Cloud SQL server instance, and creates separate databases for each site.
 
 GKE WordPress supports/requires:
-- [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine "Google Kubernetes Engine") container management.
-- [Google Compute Engine](https://cloud.google.com/compute "Google Compute Engine") for application servers and file storage. Default config includes single-replica persistent disks. Multi-replica, high-availability block-storage can be added by changing wordpress-deployment.yaml and specifying Gluster volume mounts.
-- [Google Cloud SQL](https://cloud.google.com/sql/ "Google Cloud SQL") high-availability database.
-- [Helm, the Kubernetes Package Manager](https://helm.sh/), merges charts and values to create releases.
+- [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine "Google Kubernetes Engine")
+- [Google Compute Engine](https://cloud.google.com/compute "Google Compute Engine")
+- [Google Cloud SQL](https://cloud.google.com/sql/ "Google Cloud SQL")
+- [Helm, the Kubernetes Package Manager](https://helm.sh/)
 
-Other Kubernetes Masters/Providers haven't been tested. Things like `PersistentVolume` and `Ingress` depend on your cloud provider.
+Kubernetes masters/providers, other than GKE, haven't been tested. Things like `PersistentVolume` and `Ingress` depend on your cloud provider.
 
 Use as your own personal web server farm! Use it as a backend to your own cloud hosting company! We're moving towards extra customization in terms of web server and security hardening measures.
 
