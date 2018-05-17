@@ -1,5 +1,5 @@
 # GKE WordPress
-GKE WordPress lets you deploy multiple WordPress sites within a [Google Kubernetes Engine (GKE) cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview) using [helm charts](https://helm.sh/). Built to be secure and very fast by default with FastCGI page caching, Redis object caching (enabled via plugins), Nginx pagespeed module, and NAXSI firewall, it connects to a Google Cloud SQL server instance, and creates separate databases for each site.
+GKE WordPress lets you deploy multiple WordPress sites within a [Google Kubernetes Engine (GKE) cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview) using [helm charts](https://helm.sh/). Built to be secure, via free LetsEncrypt SSL certificates, and cached by FastCGI page caching and Redis object caching, and Nginx pagespeed, it connects to a Google Cloud SQL server instance, and creates separate databases for each site.
 
 GKE WordPress supports/requires:
 - [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine "Google Kubernetes Engine")
@@ -9,7 +9,7 @@ GKE WordPress supports/requires:
 
 Kubernetes masters/providers, other than GKE, haven't been tested. Things like `PersistentVolume` and `Ingress` depend on your cloud provider.
 
-Use as your own personal WordPress farm! Use it as a backend to your own cloud hosting company!
+Use as your own personal WordPress farm! Use as a backend to your own cloud hosting company!
 
 ## How It Works
 * **WordPress**
