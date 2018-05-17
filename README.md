@@ -9,7 +9,7 @@ GKE WordPress supports/requires:
 
 Kubernetes masters/providers, other than GKE, haven't been tested. Things like `PersistentVolume` and `Ingress` depend on your cloud provider.
 
-Use as your own personal web server farm! Use it as a backend to your own cloud hosting company!
+Use as your own personal WordPress farm! Use it as a backend to your own cloud hosting company!
 
 ## How It Works
 * **WordPress**
