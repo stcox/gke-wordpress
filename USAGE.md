@@ -1,12 +1,12 @@
 # Using GKE WordPress
 ## Prerequisites
-* Kubernetes cluster on GKE. Follow the [official Kubernetes guide](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-container-cluster "Creating a Container Cluster").
-* Google Cloud SQL Database Server. Follow the [Creating a Google Cloud SQL guide](https://cloud.google.com/sql/docs/mysql/create-instance "Create Google Cloud SQL instance") and [Connecting Cloud SQL to Kubernetes Engine](https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine) guide.
-* Google Cloud SQL database credentials saved to your locally as `credentials.json`. You'll need them later. You should be comfortable with basic SQL statements, i.e. creating and managing DBs, users, grants.
-* Domain and access to its DNS settings. These instructions use the generic domain name `mysite.com` as an example site domain. You should replace it with your own domain name.
+* **GKE Cluster**. Follow the [official Kubernetes guide](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-container-cluster "Creating a Container Cluster").
+* **Cloud SQL Instance**. Follow the [Creating a Google Cloud SQL guide](https://cloud.google.com/sql/docs/mysql/create-instance "Create Google Cloud SQL instance") 
+* **Cloud SQL credentials** saved to your locally as `credentials.json`. You'll need them later. See [Connecting Cloud SQL to Kubernetes Engine](https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine).
+* **Domain and access to its DNS settings**. These instructions use the generic domain name `mysite.com` as an example site domain. You should replace it with your own domain name.
 * Upon deploying WordPress you should install:
-  * [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin to connect your site to the Redis `Deployment`
-  * The cache-clearing plugin [NGINX Cache](https://wordpress.org/plugins/nginx-cache/) if you want to make sure changes appear on your website promptly.
+  * [**Redis Object Cache**](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin to connect your site to the Redis `Deployment`
+  * [**NGINX Cache**](https://wordpress.org/plugins/nginx-cache/) if you want to make sure changes appear on your website promptly.
 
 ## Installation
 1. Install **GKE WordPress** project locally
