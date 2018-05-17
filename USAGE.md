@@ -9,7 +9,7 @@
   * The cache-clearing plugin [NGINX Cache](https://wordpress.org/plugins/nginx-cache/) if you want to make sure changes appear on your website promptly.
 
 ## Installation
-1. Install **Kubernetes WordPress** project locally
+1. Install **GKE WordPress** project locally
 ```bash
 $ mkdir -p gke-wp{wp-sites} && cd gke-wp
 $ git clone https://github.com/stcox/gke-wordpress.git && cd gke-wordpress
