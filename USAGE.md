@@ -35,7 +35,7 @@ The example uses `mysite-com`, for the site's namespace, and `mysite.com` for th
 
 The example domain, `mysite.com` only works with HTTP via a local hosts file. You should substitute your own domain.
 
-Free LetsEncrypt TLS/SSL/HTTPS/HTTP2 certificates are available for any domains you control. LetsEncrypt is enabled by setting `tls: true` in the site's configuration file.
+Free LetsEncrypt SSL certificates are available for any domains you control. LetsEncrypt is enabled by setting `tls: true` in the site's configuration file.
 
 1. **Create an A record** for your domain, `mysite.com` at your domain name provider (Godaddy, Bluehost, etc.), and point it to your Ingress IP address. [Get your cluster's Ingress IP Address](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/service?namespace=nginx-ingress)
 
