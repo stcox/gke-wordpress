@@ -1,6 +1,6 @@
-# GKE WordPress clusters
+# GKE WordPress Farm
 
-Deploy WordPress sites to [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview) clusters with [Helm charts](https://helm.sh/).
+Deploy WordPress sites to [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview) clusters via [Helm charts](https://helm.sh/). Use as your own personal WordPress farm! Use as a backend to your own cloud hosting company!
 
 GKE WordPress supports/requires:
 - [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine "Google Kubernetes Engine")
@@ -8,7 +8,6 @@ GKE WordPress supports/requires:
 - [Google Cloud SQL](https://cloud.google.com/sql/ "Google Cloud SQL")
 - [Helm, the Kubernetes Package Manager](https://helm.sh/)
 
-Use as your own personal WordPress farm! Use as a backend to your own cloud hosting company!
 
 ## How It Works
 * **WordPress**
@@ -23,7 +22,7 @@ Use as your own personal WordPress farm! Use as a backend to your own cloud host
   * The NGINX container has multiple handy configurations for multi-site and caching, all easily deployed using `ConfigMap` objects.
 
 * **Cloud SQL**
-  * The WordPress pods all interface with one [Google Cloud SQL](https://cloud.google.com/sql/) database server. This is so anyone can start off with a full-fledged web farm and bring up any number of websites using a single Cloud SQL server instance and a separate database for each site.
+  * The WordPress pods all interface with one [Google Cloud SQL](https://cloud.google.com/sql/) instance. This is so anyone can start off with a full-fledged web farm and bring up any number of websites using a single Cloud SQL server instance and a separate database for each site.
 
 * **Redis**
   * To reduce hits to the DB, the WP image is built with the `redis` PHP extension and includes a Redis `Deployment`. WP must be configured to use Redis upon initializing a new WP site by installing and configuring the WP [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin.
