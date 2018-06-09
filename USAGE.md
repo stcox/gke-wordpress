@@ -28,12 +28,12 @@ $ helm install redis && cd ..
 ```
 
 ## Usage
-### Adding websites
-The example uses `mysite-com`, for the site's namespace, and `mysite.com` for the domain. **All WordPress namespaces are automatically prefixed with **`wp-`** to create the site's namespace, so they are easier to find; consequently, the example namespace will appear as **`wp-mysite-com`** in kubernetes.
+### Adding sites
+The example site uses `mysite-com`, for the site's namespace, and `mysite.com` for the domain. **All WordPress site namespaces are automatically prefixed with `wp-`** to make them easier to find; consequently, the example namespace will appear as **`wp-mysite-com`** in k8s.
 
-The example domain, `mysite.com` only works with HTTP via a local hosts file. You should substitute your own domain.
+The example domain name is, `mysite.com` must be substituted with your own domain.
 
-Free LetsEncrypt SSL certificates are available for any domains you control. LetsEncrypt is enabled by setting `tls: true` in the site's configuration file.
+Kube-lego provides free LetsEncrypt SSL certificates for any domains you control. LetsEncrypt is enabled by default, but can be disabled in the sites `values.yaml` file.
 
 1. **Create an A record** for your domain, `mysite.com` at domain registrar (Godaddy, et al.), and point it to your Ingress IP address. [Get your cluster's Ingress IP Address](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/service?namespace=nginx-ingress)
 
