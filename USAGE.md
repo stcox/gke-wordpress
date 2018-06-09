@@ -4,9 +4,6 @@
 * **Cloud SQL Instance**. Follow the [Creating a Google Cloud SQL guide](https://cloud.google.com/sql/docs/mysql/create-instance "Create Google Cloud SQL instance") 
 * **Cloud SQL credentials** saved to your locally as `credentials.json`. You'll need them later. See [Connecting Cloud SQL to Kubernetes Engine](https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine).
 * **Domain and access to its DNS settings**. These instructions use the generic domain name `mysite.com` as an example site domain. You should replace it with your own domain name.
-* Upon deploying WordPress, install:
-  * [**Redis Object Cache plugin**](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") to connect the site to Redis, and
-  * [**NGINX Cache plugin**](https://wordpress.org/plugins/nginx-cache/) to ensure changes appear on your website promptly.
 
 ## Installation
 1. Install **GKE WordPress** project locally
@@ -49,6 +46,12 @@ $ nano ./wp-sites/mysite-com.yaml
 ```bash
 $ helm install -f ./wp-sites/mysite-com.yaml ./gke-wordpress/wordpress
 ```
+
+## Postrequisites
+* Upon deploying WordPress, install:
+  * [**Redis Object Cache plugin**](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") to connect the site to Redis, and
+  * [**NGINX Cache plugin**](https://wordpress.org/plugins/nginx-cache/) to ensure changes appear on your website promptly.
+
 
 ## Acknowledgements
 This project was inspired by [daxio/k8s-lemp](https://github.com/daxio/k8s-lemp) and builds on it with the various other official Docker images and Kubernetes applications mentioned previously.
