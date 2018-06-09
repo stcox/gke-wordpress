@@ -39,13 +39,13 @@ Free LetsEncrypt SSL certificates are available for any domains you control. Let
 
 1. **Create an A record** for your domain, `mysite.com` at domain registrar (Godaddy, et al.), and point it to your Ingress IP address. [Get your cluster's Ingress IP Address](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/service?namespace=nginx-ingress)
 
-2. **Configure** site in `values.yaml`.
+2. **Configure site** in `values.yaml`.
 ```bash
 $ cp ./gke-wordpress/wordpress/values.yaml ./wp-sites/mysite-com.yaml
 $ nano ./wp-sites/mysite-com.yaml
 ```
 
-3. **Deploy** site to cluster.
+3. **Deploy site** to cluster.
 ```bash
 $ helm install -f ./wp-sites/mysite-com.yaml ./gke-wordpress/wordpress
 ```
