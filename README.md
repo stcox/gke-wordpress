@@ -1,5 +1,7 @@
 # GKE WordPress
-GKE WordPress enables multiple WordPress site deployments to Google Cloud Platform (GCP) within a [Google Kubernetes Engine (GKE) cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview) using [helm charts](https://helm.sh/). It comes with a reverse proxy terminating LetsEncrypt SSL, and cached with FastCGI page caching and Redis object caching built into the images, along with an Nginx pagespeed and NAXSI firewall modules. Each site deployment creates a separate database within a single high-availability Google Cloud SQL instance.
+GKE WordPress allows WordPress site deployments to [Google Kubernetes Engine (GKE)] clusters(https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview) using [helm charts](https://helm.sh/). Clusters share a Kube-lego LetsEncrypt SSL certificate manager, an SSL-terminating Nginx ingress controller, and a Redis object store for caching database queries. Each site is a pod namespaced with a `wp-` prefix (e.g., wp-mysite-com) with containers for PHP, Nginx, and SQL.
+
+Nginx web server and a PHP-FPM server with a FastCGI page cache-clearing modules and Redis object caching extensions built into the container images, along with an Nginx pagespeed and NAXSI firewall modules. Each site deployment creates a separate database within a single high-availability Google Cloud SQL instance.
 
 GKE WordPress supports/requires:
 - [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine "Google Kubernetes Engine")
