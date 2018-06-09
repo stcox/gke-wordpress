@@ -1,10 +1,10 @@
 # Using GKE WordPress
 
 ## Pre-requisites
-* **GKE Cluster**. Follow the [official Kubernetes guide](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-container-cluster "Creating a Container Cluster").
-* **Cloud SQL Instance**. Follow the Google Cloud SQL [Creating instances](https://cloud.google.com/sql/docs/mysql/create-instance "Create Google Cloud SQL instance") guide.
-* **Cloud SQL credentials** saved to your locally as `credentials.json`. You'll need them later. See [Connecting Cloud SQL to Kubernetes Engine](https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine).
-* **Domain and access to its DNS settings**. These instructions use the generic domain name `mysite.com` as an example site domain. You should replace it with your own domain name.
+* **Google Kubernetes Engine cluster**. Follow the Google Kubernetes Engine [Creating a Cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-cluster "Creating a Cluster") guide.
+* **Google Cloud SQL instance**. Follow the Google Cloud SQL [Creating instances](https://cloud.google.com/sql/docs/mysql/create-instance "Create Google Cloud SQL instance") guide.
+* **Google Cloud SQL credentials** saved to your locally as `credentials.json`. You'll need them later. See [Connecting Cloud SQL to Kubernetes Engine](https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine).
+* **A domain and access to its DNS settings**. These instructions use the generic domain name `mysite.com` as an example site domain. You should replace it with your own domain name.
 
 ## Installation
 1. Install **GKE WordPress** project locally
