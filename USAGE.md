@@ -48,9 +48,9 @@ $ helm install -f ./wp-sites/mysite-com.yaml ./gke-wordpress/wordpress
 ```
 
 ## Postrequisites
-* Upon deploying WordPress, install:
-  * [**Redis Object Cache plugin**](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") to connect the site to Redis, and
-  * [**NGINX Cache plugin**](https://wordpress.org/plugins/nginx-cache/) to ensure changes appear on your website promptly.
+* Upon deploying a site, edit the site and install:
+  * [**Redis Object Cache plugin**](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") to connect the site to Redis by selecting the **Connect** button, and
+  * [**NGINX Cache plugin**](https://wordpress.org/plugins/nginx-cache/), by setting the **Cache Zone Path** to `/var/run/nginx-cache`, to ensure changes appear on your website promptly.
 
 
 ## Acknowledgements
