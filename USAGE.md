@@ -1,5 +1,6 @@
 # Using GKE WordPress
-## Prerequisites
+
+## Pre-requisites
 * **GKE Cluster**. Follow the [official Kubernetes guide](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-container-cluster "Creating a Container Cluster").
 * **Cloud SQL Instance**. Follow the [Creating a Google Cloud SQL guide](https://cloud.google.com/sql/docs/mysql/create-instance "Create Google Cloud SQL instance") 
 * **Cloud SQL credentials** saved to your locally as `credentials.json`. You'll need them later. See [Connecting Cloud SQL to Kubernetes Engine](https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine).
@@ -47,10 +48,10 @@ $ nano ./wp-sites/mysite-com.yaml
 $ helm install -f ./wp-sites/mysite-com.yaml ./gke-wordpress/wordpress
 ```
 
-## Postrequisites
-* Upon deploying a site, edit the site and install:
-  * [**Redis Object Cache plugin**](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") to connect the site to Redis by selecting the **Connect** button, and
-  * [**NGINX Cache plugin**](https://wordpress.org/plugins/nginx-cache/), by setting the **Cache Zone Path** to `/var/run/nginx-cache`, to ensure changes appear on your website promptly.
+## Post-requisites
+* Upon deploying a site, edit the site and:
+  * Install [**Redis Object Cache plugin**](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress"), and select the **Connect** button to connect to Redis, and
+  * Install [**NGINX Cache plugin**](https://wordpress.org/plugins/nginx-cache/) and set **Cache Zone Path** to `/var/run/nginx-cache`, and set Purge Cache, to ensure changes appear on your website promptly.
 
 
 ## Acknowledgements
