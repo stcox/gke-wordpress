@@ -1,6 +1,6 @@
 # GKE WordPress clusters
 
-GKE WordPress helps you deploy WordPress sites to [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview) clusters with [Helm charts](https://helm.sh/), as opposed to using `kubectl`.
+Deploy WordPress sites to [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview) clusters with [Helm charts](https://helm.sh/), instead of `kubectl`.
 
 Each cluster shares a free-SSL certificate manager (`kube-lego`), an SSL-terminating load balancer (`nginx-controller`), and an object store for caching database queries(`redis`).
 
