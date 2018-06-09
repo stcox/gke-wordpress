@@ -35,7 +35,7 @@ The example domain name is, `mysite.com` must be substituted with your own domai
 
 Kube-lego provides free LetsEncrypt SSL certificates for any domains you control. LetsEncrypt is enabled by default, but can be disabled in the sites `values.yaml` file.
 
-1. **Create an A record** for your domain, `mysite.com` at domain registrar (Godaddy, et al.), and point it to your Ingress IP address. [Get your cluster's Ingress IP Address](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/service?namespace=nginx-ingress)
+1. **Create an A record** for your domain, `mysite.com` at domain registrar (Godaddy, et al.), and point it to your Ingress IP address. [Get your cluster's Ingress IP Address](https://console.cloud.google.com/kubernetes/discovery).
 
 2. **Configure site** in `values.yaml`.
 ```bash
