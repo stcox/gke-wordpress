@@ -18,7 +18,7 @@ Visit [USAGE.md](USAGE.md "Installation & Usage").
 
 ## How It Works
 * **WordPress**
-  * Each [WordPress application server image](https://github.com/stcox/wordpress "WordPress for Kubernetes WordPress") is based on the [wordpress:php7.2-fpm](https://hub.docker.com/r/_/wordpress/ "Official WordPress Docker image") docker image with extra required PHP extensions such as `redis`. WordPress is contained in one `Deployment` controller along with an NGINX container with FastCGI caching and the NAXSI web application firewall.
+  * Each [WordPress application server image](https://github.com/stcox/wordpress "WordPress for Kubernetes WordPress") is based on the [wordpress:php7.2-fpm](https://hub.docker.com/r/_/wordpress/ "Official WordPress Docker image") docker image with `redis` extension.
   * Each WordPress `Deployment` gets it's own `PersistentVolume` as well as `Secret` objects for storing sensitive information such as passwords for their DBs.
   * `ConfigMap`s are used to inject various `php.ini` settings for PHP 7.2.
 
