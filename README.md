@@ -1,7 +1,8 @@
-# GKE WordPress Farm with Google Cloud SQL [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FNLE7XYVKHSS2)
+# GKE WordPress Farm with Google Cloud SQL
 
 Deploy WordPress sites to [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview) clusters via [Helm charts](https://helm.sh/). Use as your own personal WordPress farm or as a backend to your own cloud hosting company.
 
+ [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FNLE7XYVKHSS2)
 
 GKE WordPress supports/requires:
 - [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine "Google Kubernetes Engine")
