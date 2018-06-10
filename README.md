@@ -22,7 +22,7 @@ GKE WordPress supports/requires:
   * The NGINX container has multiple handy configurations for multi-site and caching, all easily deployed using `ConfigMap` objects.
 
 * **Cloud SQL**
-  * The WordPress sites all interface with one [Google Cloud SQL](https://cloud.google.com/sql/) instance. This is so anyone can start off with a full-fledged web farm and bring up any number of websites using a single Cloud SQL server instance and a separate database for each site.
+  * The WordPress sites all interface with one [Google Cloud SQL](https://cloud.google.com/sql/) instance, so anyone can start off with a full-fledged web farm and bring up any number of websites using a single Cloud SQL server instance and a separate database for each site.
 
 * **Redis**
   * To reduce DB hits, the WP image is built with a `redis` PHP extension that connects to a clusterwide Redis `Deployment`. WP must be configured to use Redis upon initializing a new WP site by installing and configuring the WP [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin.
