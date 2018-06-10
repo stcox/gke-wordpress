@@ -16,20 +16,20 @@ GKE WordPress supports/requires:
   * `ConfigMap`s are used to inject various `php.ini` settings for PHP 7.2.
 
 * **NGINX**
-  * Each [NGINX web server image](https://github.com/stcox/nginx) is based on the [`Debian`](https://hub.docker.com/_/debian/) docker image, and comes with:
+  * Each [NGINX web server image](https://github.com/stcox/nginx) is based on the official [`Nginx`](https://hub.docker.com/_/nginx/) docker image, and comes with:
   * NBS System's [NAXSI module](https://github.com/nbs-system/naxsi). NAXSI means [NGINX](http://nginx.org/) Anti-[XSS](https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29) & [SQL Injection](https://www.owasp.org/index.php/SQL_injection).
   * Handy configurations for NGINX and the NAXSI web application firewall are also included via `ConfigMap`s.
   * The NGINX container has multiple handy configurations for multi-site and caching, all easily deployed using `ConfigMap` objects.
 
 * **Cloud SQL**
-  * The WordPress pods all interface with one [Google Cloud SQL](https://cloud.google.com/sql/) instance. This is so anyone can start off with a full-fledged web farm and bring up any number of websites using a single Cloud SQL server instance and a separate database for each site.
+  * The WordPress sites all interface with one [Google Cloud SQL](https://cloud.google.com/sql/) instance. This is so anyone can start off with a full-fledged web farm and bring up any number of websites using a single Cloud SQL server instance and a separate database for each site.
 
 * **Redis**
-  * To reduce hits to the DB, the WP image is built with the `redis` PHP extension and includes a Redis `Deployment`. WP must be configured to use Redis upon initializing a new WP site by installing and configuring the WP [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin.
+  * To reduce DB hits, the WP image is built with a `redis` PHP extension that connects to a clusterwide Redis `Deployment`. WP must be configured to use Redis upon initializing a new WP site by installing and configuring the WP [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin.
 
 * **Ingress/Kube Lego**
-  * Websites are reached externally via an `nginx` `Ingress` controller. See Kubernetes documentation regarding `Ingress` in the [official docs](https://kubernetes.io/docs/user-guide/ingress/ "Ingress Resources") and on [GitHub](https://github.com/kubernetes/ingress/blob/master/controllers/nginx/README.md "NGINX Ingress Controller").
-  * All TLS is terminated at `Ingress` via free Let's Encrypt certificates good for all domains on your cluster. Better yet, certificate issuance is handled automatically with the awesome [Kube Lego](https://github.com/jetstack/kube-lego "Kube Lego").
+  * Websites are reached externally via an `nginx-ingress` controller. See Kubernetes documentation regarding `Ingress` in the [official docs](https://kubernetes.io/docs/user-guide/ingress/ "Ingress Resources") and on [GitHub](https://github.com/kubernetes/ingress/blob/master/controllers/nginx/README.md "NGINX Ingress Controller").
+  * TLS/SSL is terminated at `nginx-ingress` via free Let's Encrypt certificates, good for all domains on your cluster. Additionally, certificate issuance is handled automatically with the [`kube-lego`](https://github.com/jetstack/kube-lego "Kube Lego").
 
 ## Installation and Usage
 See [**Installation and Usage**](USAGE.md) for instructions on getting up and running.
