@@ -25,7 +25,7 @@ GKE WordPress supports/requires:
   * The WordPress sites all interface with one [Google Cloud SQL](https://cloud.google.com/sql/) instance, so anyone can start off with a full-fledged web farm and bring up any number of websites using a single Cloud SQL server instance and a separate database for each site.
 
 * **Redis**
-  * To reduce DB hits, the WP image is built with a `redis` PHP extension that connects to a clusterwide Redis `Deployment`. WP must be configured to use Redis upon initializing a new WP site by installing and configuring the WP [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin.
+  * To reduce DB hits, the WP image is built with a `redis` PHP extension that connects to a cluster-wide Redis `Deployment`. WP must be configured to use Redis upon initializing a new WP site by installing and configuring the WP [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin.
 
 * **Ingress/Kube Lego**
   * Websites are reached externally via an `nginx-ingress` controller. See Kubernetes documentation regarding `Ingress` in the [official docs](https://kubernetes.io/docs/user-guide/ingress/ "Ingress Resources") and on [GitHub](https://github.com/kubernetes/ingress/blob/master/controllers/nginx/README.md "NGINX Ingress Controller").
