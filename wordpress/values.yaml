@@ -18,7 +18,7 @@ wpImage: "stcox/wordpress-dev"
 wpImageTag: "1.2"
 
 ngImage: "stcox/nginx"
-ngImageTag: "1.2"
+ngImageTag: "1.0"
 
 enableResourceLimits: false   # If true, adjust below
 #requestsMemory: 256Mi
