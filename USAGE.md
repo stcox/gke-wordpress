@@ -24,7 +24,7 @@ $ helm init --service-account tiller
 ```bash
 $ helm install nginx-ingress
 $ helm install kube-lego --set legoEmail=MYEMAIL@MYSITE.COM
-$ helm install redis && cd ..
+$ helm install redis
 $ kubectl create -f ./gke-wordpress/storageclass.yaml && cd ..
 ```
 
