@@ -9,7 +9,11 @@ spec:
     storage: {{ .Values.storage }}
   accessModes:
     - ReadWriteOnce
-  storageClassName: standard
+{{ if eq .Values.ssd true }}
+  storageClassName: fast
+{{ else }}
+  storageClassName: slow
+{{ end }}
   gcePersistentDisk:
     pdName: {{ .Values.name }}
     fsType: ext4
