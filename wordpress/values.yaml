@@ -1,11 +1,12 @@
 # Default WordPress Site Info
-name: name        # Kubernetes Namespace (A-z,0-9,'-')
-domain: domain    # Domain, e.g., mysite.com, mysite2.com, dev.anysite.com, etc.
-storage: 10Gi     # Storage Size
-tls: true         # Set to 'true' for HTTPS/TLS/SSL
+name: name         # Kubernetes Namespace (A-z,0-9,'-')
+domain: domain     # Domain, e.g., mysite.com, mysite2.com, dev.anysite.com, etc.
+storage: 10Gi      # Storage Size
+ssd: false         # true=ssd, false=standard default
+tls: true          # Set to 'true' for HTTPS/TLS/SSL
 
 replicas: 1
-maxSurge: 1
+maxSurge: 2
 maxUnavailable: 0
 
 wpRedisHost: 'redis.redis'
@@ -14,17 +15,11 @@ wpRedisPort: '6379'
 wpMemoryLimit: '64M'
 wpMaxMemoryLimit: '128M'
 
-wpImage: "stcox/wordpress-dev"
+wpImage: "stcox/wordpress"
 wpImageTag: "1.2"
 
 ngImage: "stcox/nginx"
 ngImageTag: "1.0"
-
-enableResourceLimits: false   # If true, adjust below
-#requestsMemory: 256Mi
-#requestsCpu: 250m
-#limitsMemory: 512Mi
-#limitsCpu: 500m
 
 dbUser: proxyuser
 dbPass: proxyuserpassword

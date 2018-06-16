@@ -11,7 +11,11 @@ spec:
   resources:
     requests:
       storage: {{ .Values.storage }}
-  storageClassName: standard
+{{ if eq .Values.ssd true }}
+  storageClassName: fast
+{{ else }}
+  storageClassName: slow
+{{ end }}
   selector:
     matchLabels:
       app: wp-{{ .Values.name }}

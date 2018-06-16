@@ -20,11 +20,12 @@ $ kubectl create -f tiller-rbac-config.yaml
 $ helm init --service-account tiller
 ```
 
-3. Install core cluster services: **Nginx-Ingress, Kube-Lego and Redis**. Replace the kube-lego `legoEmail=` value with your own email address.
+3. Install core cluster services: **Nginx-Ingress, Kube-Lego, Redis, and Dynamically Provisioned Storage Classes**.
 ```bash
 $ helm install nginx-ingress
-$ helm install kube-lego --set legoEmail=myemail@mysite.com
-$ helm install redis && cd ..
+$ helm install kube-lego --set legoEmail=MYEMAIL@MYSITE.COM
+$ helm install redis
+$ kubectl create -f ./gke-wordpress/storageclass.yaml && cd ..
 ```
 
 ## Usage
