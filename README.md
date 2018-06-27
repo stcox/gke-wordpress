@@ -38,6 +38,8 @@ Visit [USAGE.md](USAGE.md "Installation & Usage").
   * Websites are reached externally via an `nginx-ingress` controller. See Kubernetes documentation regarding `Ingress` in the [official docs](https://kubernetes.io/docs/user-guide/ingress/ "Ingress Resources") and on [GitHub](https://github.com/kubernetes/ingress/blob/master/controllers/nginx/README.md "NGINX Ingress Controller").
   * TLS/SSL is terminated at `nginx-ingress` via free Let's Encrypt certificates, good for all domains on your cluster. Additionally, certificate issuance is handled automatically with the [`kube-lego`](https://github.com/jetstack/kube-lego "Kube Lego").
 
+![GKE WordPress](https://github.com/stcox/gke-wordpress/blob/master/gke-wp-diagram.png?raw=true)
+
 ## Acknowledgements
 This project was inspired by and based on [daxio/k8s-lemp](https://github.com/daxio/k8s-lemp "Kubernetes LEMP Stack") and builds on it with the various other official Docker images and Kubernetes applications mentioned previously.
 
