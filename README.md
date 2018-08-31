@@ -1,47 +1,100 @@
-# GKE WordPress with Google Cloud SQL
+# Wordpress on Google Kubernetes Engine
 
-Deploy WordPress sites to [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview) clusters via [Helm charts](https://helm.sh/). Use as your own personal WordPress farm or as a backend to your own cloud hosting company.
+## Pre-requisites
+* **Git**
+* **Google Kubernetes Engine cluster**. Follow the Google Kubernetes Engine [Creating a Cluster](https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-cluster "Creating a Cluster") guide. When creating a cluster, make sure you select a Kubernetes version 1.9 or greater.
+* **Google Cloud SQL instance**. Follow the Google Cloud SQL [Creating instances](https://cloud.google.com/sql/docs/mysql/create-instance "Create Google Cloud SQL instance") guide.
+* **Google Cloud SQL credentials** saved to your locally as `credentials.json`. You'll need them later. See [Connecting Cloud SQL to Kubernetes Engine](https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine).
+* [Optional] **A domain and access to its DNS settings**. These instructions use the generic domain name `mysite.com` as an example site domain. You should replace it with your own domain name.
 
- [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FNLE7XYVKHSS2)
+# Deploy Wordpress Easy Way
+1. Using wordpress google cloud marketplace, configure & deploy. https://console.cloud.google.com/marketplace/details/google/wordpress
+2. Connect to your GKE (Google Kubernetes Engine)
+```bash
+$ gcloud container clusters get-credentials {YOURGKECLUSTERNAME} --zone {YOURGKECLUSTERZONE} --project {YOURPROJECTNAME}
+```
+3. Expose your wordpress service from your google cloud shell
+```bash
+$ export APP_INSTANCE_NAME={YOURWORDPRESSSERVICENAME} # From Step 1
+$ export NAMESPACE={YOURWORDPRESSNAMESPACE} # From Step 1
+$ kubectl patch svc "$APP_INSTANCE_NAME-wordpress-svc" \
+  --namespace "$NAMESPACE" \
+  --patch '{"spec": {"type": "LoadBalancer"}}'
+```
+4. Get your wordpress site address
+```bash
+$ SERVICE_IP=$(kubectl get svc $APP_INSTANCE_NAME \
+  --namespace $NAMESPACE \
+  --output jsonpath='{.status.loadBalancer.ingress[0].ip}')
+$ echo "http://${SERVICE_IP}"
+```
 
-GKE WordPress supports/requires:
-- [Google Kubernetes Engine](https://cloud.google.com/kubernetes-engine "Google Kubernetes Engine")
-- [Google Compute Engine](https://cloud.google.com/compute "Google Compute Engine")
-- [Google Cloud SQL](https://cloud.google.com/sql/ "Google Cloud SQL")
-- [Helm, the Kubernetes Package Manager](https://helm.sh/)
+5. Scale up or down your wordpress application
+```bash
+$ kubectl scale deployment/{YOURWORDPRESSPOD_NAME} --replicas=N #Example 3 for scaling up to 3 pods, 1 for scaling down to 1 pods
+```
 
-## Installation and Usage
-See [**Installation and Usage**](USAGE.md) for instructions on getting up and running.
-Visit [USAGE.md](USAGE.md "Installation & Usage").
+### Notes
+*If you want to simplify above script, just create bash script ie: `publish.sh` and copy all command from step 2-4 into it.
 
 
+# Deploy Wordpress Hard Way using Helm
 
-## How It Works
-* **WordPress**
-  * Each [WordPress application server image](https://github.com/stcox/wordpress "WordPress for Kubernetes WordPress") is based on the [wordpress:php7.2-fpm](https://hub.docker.com/r/_/wordpress/ "Official WordPress Docker image") docker image with `redis` extension.
-  * Each WordPress `Deployment` gets it's own `PersistentVolume` as well as `Secret` objects for storing sensitive information such as passwords for their DBs.
-  * `ConfigMap`s are used to inject various `php.ini` settings for PHP 7.2.
+## Installation
+The example site uses `mysite-com`, for the site's namespace, and `mysite.com` for the domain. **All WordPress site namespaces are automatically prefixed with `wp-`** to make them easier to find; consequently, the example namespace will appear as **`wp-mysite-com`** in k8s.
 
-* **NGINX**
-  * Each [NGINX web server image](https://github.com/stcox/nginx) is based on the official [`Nginx`](https://hub.docker.com/_/nginx/) docker image, and comes with:
-  * NBS System's [NAXSI module](https://github.com/nbs-system/naxsi). NAXSI means [NGINX](http://nginx.org/) Anti-[XSS](https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29) & [SQL Injection](https://www.owasp.org/index.php/SQL_injection).
-  * Handy configurations for NGINX and the NAXSI web application firewall are also included via `ConfigMap`s.
-  * The NGINX container has multiple handy configurations for multi-site and caching, all easily deployed using `ConfigMap` objects.
+The example domain name is, `mysite.com` must be substituted with your own domain.
 
-* **Cloud SQL**
-  * The WordPress sites all interface with one [Google Cloud SQL](https://cloud.google.com/sql/) instance, so anyone can start off with a full-fledged web farm and bring up any number of websites using a single Cloud SQL server instance and a separate database for each site.
+Kube-lego provides free LetsEncrypt SSL certificates for any domains you control. LetsEncrypt is enabled by default, but can be disabled in the sites `values.yaml` file.
 
-* **Redis**
-  * To reduce DB hits, the WP image is built with a `redis` PHP extension that connects to a cluster-wide Redis `Deployment`. WP must be configured to use Redis upon initializing a new WP site by installing and configuring the WP [Redis Object Cache](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress") plugin.
+1. **Create an A record** for your domain, `mysite.com` at domain registrar (Godaddy, et al.), and point it to your Ingress IP address. [Get your cluster's Ingress IP Address](https://console.cloud.google.com/kubernetes/discovery). Or just edit in your /etc/host for testing purpose.
 
-* **Ingress/Kube Lego**
-  * Websites are reached externally via an `nginx-ingress` controller. See Kubernetes documentation regarding `Ingress` in the [official docs](https://kubernetes.io/docs/user-guide/ingress/ "Ingress Resources") and on [GitHub](https://github.com/kubernetes/ingress/blob/master/controllers/nginx/README.md "NGINX Ingress Controller").
-  * TLS/SSL is terminated at `nginx-ingress` via free Let's Encrypt certificates, good for all domains on your cluster. Additionally, certificate issuance is handled automatically with the [`kube-lego`](https://github.com/jetstack/kube-lego "Kube Lego").
+2. Install **GKE WordPress** project locally
+```bash
+$ git clone https://github.com/ekarisky/gke-wordpress.git && cd gke-wordpress
+```
 
-![GKE WordPress](https://github.com/stcox/gke-wordpress/blob/master/gke-wp-diagram.png?raw=true)
+3. **Configure site** in `values.yaml`.
+```bash
+$ mkdir wp-sites
+$ cp gke-wordpress/wordpress/values.yaml wp-sites/mysite-com.yaml
+$ nano wp-sites/mysite-com.yaml
+```
+
+4. Install **Helm & Tiller**
+```bash
+$ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+$ kubectl create -f tiller-rbac-config.yaml
+$ helm init --service-account tiller
+```
+
+5. Install core cluster services: **Nginx-Ingress, Kube-Lego, Redis, and Dynamically Provisioned Storage Classes**.
+```bash
+$ helm install nginx-ingress
+$ helm install kube-lego --set legoEmail=MYEMAIL@MYSITE.COM
+$ helm install redis
+$ kubectl create -f storageclass.yaml
+```
+
+6. **Deploy site** to cluster.
+```bash
+$ helm install -f wp-sites/mysite-com.yaml wordpress
+```
+
+7. Scale up or down your wordpress application
+```bash
+$ kubectl scale deployment/{YOURWORDPRESSPOD_NAME} --replicas=N #Example 3 for scaling up to 3 pods, 1 for scaling down to 1 pods
+```
+
+### Notes
+*If you want to simplify above script, just create bash script ie: `publish.sh` and copy all command from step 2-6 into it.
+
+## Post-requisites
+* Upon deploying a site, edit the site and:
+  * Install [**Redis Object Cache plugin**](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress"), and select the **Connect** button to connect to Redis, and
+  * Install [**NGINX Cache plugin**](https://wordpress.org/plugins/nginx-cache/) and set **Cache Zone Path** to `/var/run/nginx-cache`, and set Purge Cache, to ensure changes appear on your website promptly.
+
 
 ## Acknowledgements
-This project was inspired by and based on [daxio/k8s-lemp](https://github.com/daxio/k8s-lemp "Kubernetes LEMP Stack") and builds on it with the various other official Docker images and Kubernetes applications mentioned previously.
-
-## Donate
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FNLE7XYVKHSS2)
+This project was forked from [stcox/gke-wordpress](https://github.com/stcox/gke-wordpress), and modified accordingly
+This project was inspired by [daxio/k8s-lemp](https://github.com/daxio/k8s-lemp) and builds on it with the various other official Docker images and Kubernetes applications mentioned previously.
