@@ -5,14 +5,10 @@ storage: 10Gi      # Storage Size
 ssd: false         # true=ssd, false=standard default
 tls: true          # Set to 'true' for HTTPS/TLS/SSL
 
-replicas: 1
-maxSurge: 2
-maxUnavailable: 0
-
 wpRedisHost: 'redis.redis'
 wpRedisPort: '6379'
 
-wpMemoryLimit: '64M'
+wpMemoryLimit: '128M'
 wpMaxMemoryLimit: '128M'
 
 wpImage: "stcox/wordpress"
