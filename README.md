@@ -1,4 +1,4 @@
-# GKE WordPress Farm with Google Cloud SQL
+# GKE WordPress with Google Cloud SQL
 
 Deploy WordPress sites to [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview) clusters via [Helm charts](https://helm.sh/). Use as your own personal WordPress farm or as a backend to your own cloud hosting company.
 
@@ -37,6 +37,8 @@ Visit [USAGE.md](USAGE.md "Installation & Usage").
 * **Ingress/Kube Lego**
   * Websites are reached externally via an `nginx-ingress` controller. See Kubernetes documentation regarding `Ingress` in the [official docs](https://kubernetes.io/docs/user-guide/ingress/ "Ingress Resources") and on [GitHub](https://github.com/kubernetes/ingress/blob/master/controllers/nginx/README.md "NGINX Ingress Controller").
   * TLS/SSL is terminated at `nginx-ingress` via free Let's Encrypt certificates, good for all domains on your cluster. Additionally, certificate issuance is handled automatically with the [`kube-lego`](https://github.com/jetstack/kube-lego "Kube Lego").
+
+![GKE WordPress](https://github.com/stcox/gke-wordpress/blob/master/gke-wp-diagram.png?raw=true)
 
 ## Acknowledgements
 This project was inspired by and based on [daxio/k8s-lemp](https://github.com/daxio/k8s-lemp "Kubernetes LEMP Stack") and builds on it with the various other official Docker images and Kubernetes applications mentioned previously.
