@@ -44,7 +44,12 @@ $ cp ./gke-wordpress/wordpress/values.yaml ./wp-sites/mysite-com.yaml
 $ nano ./wp-sites/mysite-com.yaml
 ```
 
-3. **Deploy site** to cluster.
+3. **Create Persistent Disk** with disk size and cluster zone.
+```
+$ gcloud compute disks create --size=10GB --zone=us-central1-a mysite-com
+```
+
+4. **Deploy site** to cluster.
 ```bash
 $ helm install -f ./wp-sites/mysite-com.yaml ./gke-wordpress/wordpress
 ```
