@@ -55,7 +55,13 @@ $ helm install -f ./wp-sites/mysite-com.yaml ./gke-wordpress/wordpress
 ```
 
 ## Post-requisites
-* Upon deploying a site, edit the site and:
+* Upon deploying a site:
+  * Add the following lines to wp-config.php:
+     - define('WP_CACHE_KEY_SALT', 'mysite-com');
+     - define('WP_REDIS_CLIENT', 'pecl');
+     - define('WP_REDIS_SCHEME', 'tcp');
+     - define('WP_REDIS_HOST', 'redis.redis');
+     - define('WP_REDIS_PORT', '6379');
   * Install [**Redis Object Cache plugin**](https://wordpress.org/plugins/redis-cache/ "Redis Object Cache plugin for WordPress"), and select the **Connect** button to connect to Redis, and
   * Install [**NGINX Cache plugin**](https://wordpress.org/plugins/nginx-cache/) and set **Cache Zone Path** to `/var/run/nginx-cache`, and set Purge Cache, to ensure changes appear on your website promptly.
 
