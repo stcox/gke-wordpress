@@ -5,17 +5,27 @@ storage: 10Gi      # Storage Size
 ssd: false         # true=ssd, false=standard default
 tls: true          # Set to 'true' for HTTPS/TLS/SSL
 
-wpRedisHost: 'redis.redis'
-wpRedisPort: '6379'
-
 wpMemoryLimit: '128M'
 wpMaxMemoryLimit: '128M'
+
+enableResourceLimits: false   # If true, adjust below
+#requestsMemory: 128Mi
+#requestsCpu: 125m
+#limitsMemory: 256Mi
+#limitsCpu: 1000m
 
 wpImage: "stcox/wordpress"
 wpImageTag: "1.2"
 
 ngImage: "stcox/nginx"
 ngImageTag: "1.0"
+
+replicas: 1
+maxSurge: 1  
+maxUnavailable: 1
+
+wpRedisHost: 'redis.redis'
+wpRedisPort: '6379'
 
 dbUser: proxyuser
 dbPass: proxyuserpassword

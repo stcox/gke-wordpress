@@ -37,7 +37,6 @@ spec:
       - image: {{ .Values.wpImage }}:{{ .Values.wpImageTag }}
         imagePullPolicy: IfNotPresent
         name: wp
-        resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
         env:
@@ -69,6 +68,15 @@ spec:
             secretKeyRef:
               name: cloudsql-db-credentials
               key: password
+        {{- if eq .Values.enableResourceLimits true }}
+        resources:
+          requests:
+            memory: {{ .Values.requestsMemory | quote }}
+            cpu: {{ .Values.requestsCpu | quote }}
+          limits:
+            memory: {{ .Values.limitsMemory | quote }}
+            cpu: {{ .Values.limitsCpu | quote }}
+        {{- end}}
         volumeMounts:
         - name: wp-persistent-storage
           mountPath: /var/www/html
